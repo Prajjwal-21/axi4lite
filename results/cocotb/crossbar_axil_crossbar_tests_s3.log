@@ -1,0 +1,121 @@
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/Python'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:234  in gpi_load_users                  Running entry func 'initialize' from loaded library '/Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb/simulator.cpython-314-darwin.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:115  in initialize                      Using Python 3.14.6 interpreter at /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 3
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Verilator version 5.052 2026-09-05
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_simultaneous_distinct_slaves (1/14)
+                                                            Two masters access two different slaves in the same cycle window.
+   130.00ns INFO     cocotb.crossbar_checker_top        [scoreboard:distinct] issued 2 writes / 2 reads; responses OKAY=4 SLVERR=0 DECERR=0
+                                                          master 0: 1 writes, 1 reads, okay=2 slverr=0 decerr=0
+                                                          master 1: 1 writes, 1 reads, okay=2 slverr=0 decerr=0
+   130.00ns INFO     cocotb.regression                  axil_crossbar_tests.test_simultaneous_distinct_slaves passed
+   130.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_simultaneous_same_slave (2/14)
+                                                            Two masters write the same slave at once: both are served exactly once.
+   280.00ns INFO     cocotb.crossbar_checker_top        [scoreboard:same-slave] issued 2 writes / 1 reads; responses OKAY=3 SLVERR=0 DECERR=0
+                                                          master 0: 1 writes, 1 reads, okay=2 slverr=0 decerr=0
+                                                          master 1: 1 writes, 0 reads, okay=1 slverr=0 decerr=0
+   280.00ns INFO     cocotb.crossbar_checker_top        served order: ['0xa5000003', '0xa5100004']
+   280.00ns INFO     cocotb.regression                  axil_crossbar_tests.test_simultaneous_same_slave passed
+   280.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_aw_w_arrival_orders (3/14)
+                                                            AW and W are independent channels: either may arrive first, at the master
+   600.00ns INFO     cocotb.crossbar_checker_top        [scoreboard:aw-w-order] issued 3 writes / 0 reads; responses OKAY=3 SLVERR=0 DECERR=0
+                                                          master 0: 3 writes, 0 reads, okay=3 slverr=0 decerr=0
+   600.00ns INFO     cocotb.regression                  axil_crossbar_tests.test_aw_w_arrival_orders passed
+   600.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_channel_backpressure (4/14)
+                                                            Stalled READY on AW/W/AR and delayed B/R must not corrupt or lose data.
+  2080.00ns INFO     cocotb.crossbar_checker_top        [scoreboard:backpressure] issued 9 writes / 3 reads; responses OKAY=12 SLVERR=0 DECERR=0
+                                                          master 0: 6 writes, 1 reads, okay=7 slverr=0 decerr=0
+                                                          master 1: 3 writes, 2 reads, okay=5 slverr=0 decerr=0
+  2080.00ns INFO     cocotb.regression                  axil_crossbar_tests.test_channel_backpressure passed
+  2080.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_delayed_response_routing (5/14)
+                                                            A slow slave response must reach only its owner, and the second request
+  2750.00ns INFO     cocotb.crossbar_checker_top        [scoreboard:delayed-routing] issued 2 writes / 2 reads; responses OKAY=4 SLVERR=0 DECERR=0
+                                                          master 0: 1 writes, 1 reads, okay=2 slverr=0 decerr=0
+                                                          master 1: 1 writes, 1 reads, okay=2 slverr=0 decerr=0
+  2750.00ns INFO     cocotb.regression                  axil_crossbar_tests.test_delayed_response_routing passed
+  2750.00ns INFO     cocotb.regression                  running axil_crossbar_tests.test_wstrb_partial_and_zero (6/14)
+                                                            Partial strobes change only the enabled bytes; a zero-strobe write is a
+  3440.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:wstrb] issued 8 writes / 8 reads; responses OKAY=16 SLVERR=0 DECERR=0
+                                                          master 0: 8 writes, 8 reads, okay=16 slverr=0 decerr=0
+  3440.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_wstrb_partial_and_zero passed
+  3440.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_invalid_address_decerr (7/14)
+                                                            Every unmapped address must be answered with DECERR by the internal error
+  4250.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:decerr] issued 12 writes / 4 reads; responses OKAY=0 SLVERR=0 DECERR=16
+                                                          master 0: 12 writes, 0 reads, okay=0 slverr=0 decerr=12
+                                                          master 1: 0 writes, 4 reads, okay=0 slverr=0 decerr=4
+  4250.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_invalid_address_decerr passed
+  4250.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_reset_idle_and_in_flight (8/14)
+                                                            While reset is asserted the crossbar must accept nothing; a transaction in
+  4560.01ns WARNING  py.warnings                        /Users/prajjwalsingh/Desktop/axilite4/tests/axil_crossbar_tests.py:454: DeprecationWarning: `task.kill()` is deprecated in favor of `task.cancel()`
+                                                          pending.kill()
+  4670.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:post-reset] issued 1 writes / 1 reads; responses OKAY=2 SLVERR=0 DECERR=0
+                                                          master 0: 1 writes, 0 reads, okay=1 slverr=0 decerr=0
+                                                          master 1: 0 writes, 1 reads, okay=1 slverr=0 decerr=0
+  4670.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_reset_idle_and_in_flight passed
+  4670.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_concurrent_read_write (9/14)
+                                                            One master reads a slave while the other writes it: both proceed, because
+  4800.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:concurrent-rw] issued 2 writes / 1 reads; responses OKAY=3 SLVERR=0 DECERR=0
+                                                          master 0: 2 writes, 0 reads, okay=2 slverr=0 decerr=0
+                                                          master 1: 0 writes, 1 reads, okay=1 slverr=0 decerr=0
+  4800.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_concurrent_read_write passed
+  4800.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_contention_round_robin (10/14)
+                                                            Both masters hammer one slave: every transaction completes, none is lost,
+  5210.01ns INFO     cocotb.crossbar_checker_top        grant order (master per served write): [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+  5210.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:fairness] issued 12 writes / 0 reads; responses OKAY=12 SLVERR=0 DECERR=0
+                                                          master 0: 6 writes, 0 reads, okay=6 slverr=0 decerr=0
+                                                          master 1: 6 writes, 0 reads, okay=6 slverr=0 decerr=0
+  5210.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_contention_round_robin passed
+  5210.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_randomized_multi_master (11/14)
+                                                            Randomized concurrent traffic from both masters with randomized delays,
+  5210.01ns INFO     cocotb.crossbar_checker_top        randomized traffic seed = 898738327573664464447141902286294534857260504768
+  7350.01ns INFO     cocotb.crossbar_checker_top        [scoreboard:random] issued 32 writes / 16 reads; responses OKAY=48 SLVERR=0 DECERR=0
+                                                          master 0: 16 writes, 8 reads, okay=24 slverr=0 decerr=0
+                                                          master 1: 16 writes, 8 reads, okay=24 slverr=0 decerr=0
+  7350.01ns INFO     cocotb.crossbar_checker_top        randomized: 32 writes, 16 reads, 32 served writes, 46 overlapping master transaction pairs
+  7350.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_randomized_multi_master passed
+  7350.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_fault_injection_detected (12/14)
+                                                            The scoreboard must reject dropped, duplicated, corrupted and misrouted
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: dropped write
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: duplicated write
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: corrupted write data
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: corrupted WSTRB
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: misrouted write
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: dropped read
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: duplicated read
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: corrupted read data
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: wrong response code
+  7350.01ns INFO     cocotb.crossbar_checker_top        fault detected as expected: wrong read data
+  7350.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_fault_injection_detected passed
+  7350.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_deadlock_is_detected (13/14)
+                                                            A slave that never responds must fail the test through the BFM's cycle
+  7703.01ns INFO     cocotb.crossbar_checker_top        deadlock detected as expected: m0: B handshake did not complete within 30 cycles (deadlock or DUT not responding)
+  7703.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_deadlock_is_detected passed
+  7703.01ns INFO     cocotb.regression                  running axil_crossbar_tests.test_second_aw_held_off (14/14)
+                                                            Directed regression for the write-slot hole that formal/routing.sby found.
+  7863.01ns INFO     cocotb.crossbar_checker_top        second AW held off for 6 cycles of the window
+  7933.01ns INFO     cocotb.crossbar_checker_top        second-AW directed test: [scoreboard:second-aw] issued 0 writes / 0 reads; responses OKAY=0 SLVERR=0 DECERR=0
+  7933.01ns INFO     cocotb.regression                  axil_crossbar_tests.test_second_aw_held_off passed
+  7933.01ns INFO     cocotb.regression                  ***************************************************************************************************************
+                                                        ** TEST                                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************************
+                                                        ** axil_crossbar_tests.test_simultaneous_distinct_slaves   PASS         130.00           0.00      29104.20  **
+                                                        ** axil_crossbar_tests.test_simultaneous_same_slave        PASS         150.00           0.00      45190.93  **
+                                                        ** axil_crossbar_tests.test_aw_w_arrival_orders            PASS         320.00           0.01      53142.17  **
+                                                        ** axil_crossbar_tests.test_channel_backpressure           PASS        1480.00           0.02      59598.01  **
+                                                        ** axil_crossbar_tests.test_delayed_response_routing       PASS         670.00           0.01      48317.45  **
+                                                        ** axil_crossbar_tests.test_wstrb_partial_and_zero         PASS         690.00           0.01      49974.50  **
+                                                        ** axil_crossbar_tests.test_invalid_address_decerr         PASS         810.00           0.02      50288.96  **
+                                                        ** axil_crossbar_tests.test_reset_idle_and_in_flight       PASS         420.00           0.01      47746.94  **
+                                                        ** axil_crossbar_tests.test_concurrent_read_write          PASS         130.00           0.00      45056.75  **
+                                                        ** axil_crossbar_tests.test_contention_round_robin         PASS         410.00           0.01      47125.53  **
+                                                        ** axil_crossbar_tests.test_randomized_multi_master        PASS        2140.00           0.04      51616.59  **
+                                                        ** axil_crossbar_tests.test_fault_injection_detected       PASS           0.00           0.00          0.00  **
+                                                        ** axil_crossbar_tests.test_deadlock_is_detected           PASS         353.00           0.01      56383.77  **
+                                                        ** axil_crossbar_tests.test_second_aw_held_off             PASS         230.00           0.00      52944.56  **
+                                                        ***************************************************************************************************************
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                      7933.01           0.16      50004.63  **
+                                                        ***************************************************************************************************************
+- :0: Verilog $finish

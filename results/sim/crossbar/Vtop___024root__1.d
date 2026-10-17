@@ -1,0 +1,19 @@
+Vtop___024root__1.o: \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/SDKSettings.json \
+  /Users/prajjwalsingh/Desktop/axilite4/results/sim/crossbar/Vtop__pch.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_config.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilatedos.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_types.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_funcs.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_dpi.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_sym_props.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/vltstd/svdpi.h \
+  /Users/prajjwalsingh/Desktop/axilite4/results/sim/crossbar/Vtop__Syms.h \
+  /Users/prajjwalsingh/Desktop/axilite4/results/sim/crossbar/Vtop.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_cov.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_covergroup.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_cov_model.h \
+  /Users/prajjwalsingh/Desktop/axilite4/results/sim/crossbar/Vtop___024root.h \
+  /Users/prajjwalsingh/Desktop/axilite4/results/sim/crossbar/Vtop_axi_lite_slave_port.h \
+  Vtop___024root__1.cpp Vtop__pch.h

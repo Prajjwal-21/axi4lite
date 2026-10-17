@@ -1,0 +1,10 @@
+# Tool versions recorded 2026-10-17 16:35:08 IST
+verilator  /opt/homebrew/bin/verilator              Verilator 5.052 2026-09-05 rev vUNKNOWN-built20260905
+yosys      /opt/homebrew/bin/yosys                  Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 21.0.0.21000334)
+sby        /opt/homebrew/bin/sby                    SBY v0.70
+iverilog   /opt/homebrew/bin/iverilog               Icarus Verilog version 13.0 (stable) (v13_0)
+surfer     /opt/homebrew/bin/surfer                 surfer 0.6.0 (git: v0.6.0)
+python     /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python Python 3.14.8
+cocotb     /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python 2.1.0
+cc         /usr/bin/cc                              Apple clang version 21.0.0 (clang-2100.3.34.2)
+uname      /usr/bin/uname                           Darwin Prajjwals-MacBook-Air-4.local 27.0.0 Darwin Kernel Version 27.0.0: Tue Aug 11 21:02:16 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T8112 arm64

@@ -1,0 +1,68 @@
+# -----------------------------------------------------------------------------
+# formal/progress.sby -- progress (liveness) and response-code routing.
+#
+# WHAT IS PROVEN (BOUNDED, mode bmc: no counterexample within the depth below)
+#   P1/P2  a scripted master's write and read always complete within their
+#          channel deadlines (AW_LIMIT/R_LIMIT/TX_LIMIT, 16/16/32 cycles) -
+#          the paths cannot deadlock.
+#   P3     both masters contend permanently for the UART write port and the
+#          GPIO read port, so the deadlines are exactly a no-starvation
+#          statement about the per-target round-robin arbiters.
+#   P4     response codes travel with the transaction: UART writes OKAY, GPIO
+#          reads SLVERR, unmapped reads DECERR with RDATA = 0.
+#   P5     all four streams run concurrently, and rst is free in any cycle.
+#
+# WHY BMC AND NOT INDUCTION
+#   Deadline properties are statements about a *window* (a counter that may
+#   only run for K cycles), so they cannot be step-inductive: an induction step
+#   may start with the window already half-elapsed.  The unbounded half of the
+#   story is formal/routing.sby (all safety invariants, 1-induction) plus the
+#   long constrained-random runs in simulation; this job checks the bounded
+#   liveness/completion behavior exhaustively over every input/reset schedule
+#   of the depth below, which simulation (even seeded) cannot.
+#
+# WHY THE SLAVE MODELS ARE BOUNDED-LATENCY
+#   A target that never answers stalls any crossbar; no DUT can be proven to
+#   make progress against one.  The harness slaves therefore answer within a
+#   small fixed number of cycles (see axil_progress_harness.sv), which is the
+#   liveness contract real peripherals in such a subsystem have.  All safety
+#   properties remain proven against arbitrary, never-answering targets in
+#   routing.sby.
+#
+# DEPTH RATIONALE
+#   TX_LIMIT is 32 cycles (measured settling is far below; the limits are
+#   deliberately loose).  depth 64 covers the first two full deadline windows
+#   of all four streams after the initial reset, plus the startup phase.
+#   Deeper BMC on this harness grows roughly 2x per step and is compute-bound;
+#   64 is the largest depth that keeps the job a few minutes on a laptop while
+#   still being deeper than two complete contended transactions.
+#
+# Run from the repository root:  sby -f formal/progress.sby
+# -----------------------------------------------------------------------------
+[options]
+mode bmc
+depth 64
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv -formal -DAXIL_ASSERTIONS -I. \
+    axi_lite_address_decoder.sv \
+    axi_lite_arbiter.sv \
+    axil_error_slave.sv \
+    axi_lite_master_port.sv \
+    axi_lite_slave_port.sv \
+    axi_lite_crossbar.sv \
+    axil_progress_harness.sv
+prep -top axil_progress_harness -flatten
+
+[files]
+rtl/axil_defs.svh
+rtl/axi_lite_address_decoder.sv
+rtl/axi_lite_arbiter.sv
+rtl/axil_error_slave.sv
+rtl/axi_lite_master_port.sv
+rtl/axi_lite_slave_port.sv
+rtl/axi_lite_crossbar.sv
+formal/axil_progress_harness.sv

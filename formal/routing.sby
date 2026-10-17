@@ -1,0 +1,74 @@
+# -----------------------------------------------------------------------------
+# formal/routing.sby -- UNBOUNDED proof of the crossbar's own invariants.
+#
+# WHAT IS PROVEN (unbounded: 1-induction + basecase, no depth limit)
+#   The design's in-RTL assertions (compiled with -DAXIL_ASSERTIONS), which are
+#   the state relations the routing correctness rests on:
+#
+#   rtl/axi_lite_crossbar.sv
+#     * ap_payload_from_owner: every payload presented to a slave port (address,
+#       PROT, data, strobes) comes from a master whose captured address decodes
+#       to that slave -> no cross-talk, no misrouting at dispatch time,
+#     * the region assertions: a real slave only ever sees addresses inside its
+#       own region, and the error target only ever sees unmapped addresses,
+#     * ap_mst_w_req_onehot / ap_mst_r_req_onehot: one target selected per master,
+#     * ap_gnt_exclusive_w / ap_gnt_exclusive_r: at most one master granted per
+#       target and per direction.
+#
+#   rtl/axi_lite_master_port.sv, rtl/axi_lite_slave_port.sv,
+#   rtl/axil_error_slave.sv, rtl/axil_regfile_slave.sv
+#     * reset inertness: no READY and no response VALID while rst is high (so no
+#       handshake can complete during reset), for both boundary sides,
+#     * one-outstanding gating: READY is low while a transaction occupies the
+#       master's slot, so a second AW/W/AR is structurally refused,
+#     * the registered request select always agrees with the decode of the
+#       registered address, and a pending AR implies the read slot is occupied,
+#     * response masking: a B/R is only forwarded once the target has actually
+#       taken the request (w_rsp_en / r_rsp_en), which is what makes the port
+#       immune to a target that answers out of contract,
+#     * grant/payload consistency on the slave port side.
+#
+#   The harness's own assumption is only "rst is asserted at time 0" (every
+#   flip-flop in the design has a synchronous reset, so this is exactly the
+#   state a real reset leaves behind).  Everything else - every master-side and
+#   slave-side input, including rst itself in later cycles - is free.
+#
+# WHAT IS *NOT* IN THIS JOB
+#   The harness's transaction-level properties (no response without a request,
+#   the response belongs to the master's own target, no duplicate/phantom
+#   completion, one outstanding per master as seen at the boundary).  Those are
+#   statements about the *history* of the boundary; their evidence lives in
+#   harness registers that an induction step may set inconsistently with the
+#   DUT, so they are not inductive.  They are proven by BOUNDED model checking
+#   in formal/completion.sby and checked on every cycle of every simulated test
+#   (tb/cocotb/axil_monitor.py, tb/cocotb/axil_scoreboard.py).
+#
+# Run from the repository root:  sby -f formal/routing.sby
+# -----------------------------------------------------------------------------
+[options]
+mode prove
+depth 12
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv -formal -DAXIL_ASSERTIONS -DAXIL_FML_RTL_ONLY -I. \
+    axi_lite_address_decoder.sv \
+    axi_lite_arbiter.sv \
+    axil_error_slave.sv \
+    axi_lite_master_port.sv \
+    axi_lite_slave_port.sv \
+    axi_lite_crossbar.sv \
+    axil_crossbar_harness.sv
+prep -top axil_crossbar_harness -flatten
+
+[files]
+rtl/axil_defs.svh
+rtl/axi_lite_address_decoder.sv
+rtl/axi_lite_arbiter.sv
+rtl/axil_error_slave.sv
+rtl/axi_lite_master_port.sv
+rtl/axi_lite_slave_port.sv
+rtl/axi_lite_crossbar.sv
+formal/axil_crossbar_harness.sv

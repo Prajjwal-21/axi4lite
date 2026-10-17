@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------------
+# formal/decode.sby -- address decoding is one-hot, exhaustive and correctly
+# bounded for EVERY 32-bit address.
+#
+# Safety properties only.  No liveness, no environment assumptions: `addr` is a
+# free input, so the proof covers all 2**32 addresses rather than a sample.
+#
+# The [files] entries are copied into the workdir by basename, so this job (and
+# every other job in formal/) must be started from the repository root:
+#
+#     sby -f formal/decode.sby
+#     make formal-decode
+#
+# Results of the reference run: docs/results.md.
+# -----------------------------------------------------------------------------
+[options]
+mode prove
+depth 2
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv -formal -I. \
+    axi_lite_address_decoder.sv \
+    axil_decode_harness.sv
+prep -top axil_decode_harness -flatten
+
+[files]
+rtl/axil_defs.svh
+rtl/axi_lite_address_decoder.sv
+formal/axil_decode_harness.sv

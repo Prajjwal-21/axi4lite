@@ -1,0 +1,36 @@
+# -----------------------------------------------------------------------------
+# scripts/synth.ys -- generic-technology synthesis of the peripheral subsystem.
+#
+# This maps the RTL onto Yosys' internal gate-level cell library (via `synth`).
+# It is an RTL-quality and structured-count check: it proves the design is
+# synthesizable and gives real cell/flop counts.
+#
+# It is NOT a technology-mapped implementation: no standard-cell library, no
+# timing constraints, no placement. Therefore NO area, timing, or power numbers
+# are produced or claimed anywhere in this repository.
+#
+# Log: results/synth/synth_peripheral_subsystem.log (written by `make synth`);
+# the `stat` report is the tail of the same log.
+# -----------------------------------------------------------------------------
+
+# Read the synthesizable RTL (no testbench, no assertions).
+read_verilog -sv -Irtl \
+  rtl/axi_lite_arbiter.sv \
+  rtl/axi_lite_address_decoder.sv \
+  rtl/axil_error_slave.sv \
+  rtl/axi_lite_master_port.sv \
+  rtl/axi_lite_slave_port.sv \
+  rtl/axi_lite_crossbar.sv \
+  rtl/axil_regfile_slave.sv \
+  rtl/uart_regs.sv \
+  rtl/gpio_regs.sv \
+  rtl/timer_regs.sv \
+  rtl/peripheral_subsystem.sv
+
+hierarchy -check -top peripheral_subsystem
+
+# Flatten, then run a standard generic synthesis pass (process -> netlist ->
+# basic gate mapping + ABC optimisation of the combinational logic).
+synth -top peripheral_subsystem
+
+stat

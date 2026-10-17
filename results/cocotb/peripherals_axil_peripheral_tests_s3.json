@@ -1,0 +1,94 @@
+{
+  "dut": "peripherals",
+  "toplevel": "peripheral_unit_harness",
+  "module": "axil_peripheral_tests",
+  "seed": 3,
+  "results_xml": "results/cocotb/peripherals_axil_peripheral_tests_s3.xml",
+  "log": "results/cocotb/peripherals_axil_peripheral_tests_s3.log",
+  "tests": [
+    {
+      "name": "test_reset_values_and_ids",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_ro_wo_and_bad_offsets",
+      "status": "PASS",
+      "time_s": 0.004,
+      "messages": []
+    },
+    {
+      "name": "test_wstrb_zero_and_partial",
+      "status": "PASS",
+      "time_s": 0.004,
+      "messages": []
+    },
+    {
+      "name": "test_zero_strobe_has_no_effect",
+      "status": "PASS",
+      "time_s": 0.005,
+      "messages": []
+    },
+    {
+      "name": "test_aw_w_arrival_orders",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_read_before_write_same_cycle",
+      "status": "PASS",
+      "time_s": 0.002,
+      "messages": []
+    },
+    {
+      "name": "test_timer_counting_and_period",
+      "status": "PASS",
+      "time_s": 0.002,
+      "messages": []
+    },
+    {
+      "name": "test_timer_expiry_flags_oneshot_and_irq",
+      "status": "PASS",
+      "time_s": 0.002,
+      "messages": []
+    },
+    {
+      "name": "test_timer_prescaler_and_w1c_race",
+      "status": "PASS",
+      "time_s": 0.004,
+      "messages": []
+    },
+    {
+      "name": "test_gpio_sync_latency_and_edges",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_uart_tx_frame_and_bit_timing",
+      "status": "PASS",
+      "time_s": 0.008,
+      "messages": []
+    },
+    {
+      "name": "test_uart_loopback_roundtrip",
+      "status": "PASS",
+      "time_s": 0.008,
+      "messages": []
+    },
+    {
+      "name": "test_uart_rx_frame_error_overrun_and_gating",
+      "status": "PASS",
+      "time_s": 0.008,
+      "messages": []
+    },
+    {
+      "name": "test_checker_self_test",
+      "status": "PASS",
+      "time_s": 0.001,
+      "messages": []
+    }
+  ]
+}

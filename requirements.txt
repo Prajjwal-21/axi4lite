@@ -1,0 +1,6 @@
+# Python side of the verification environment.
+#
+# Only the cocotb testbench framework is needed; everything else (Verilator,
+# Yosys, SymbiYosys, Icarus) is a system tool - see docs/results.md for the
+# versions this project's evidence was produced with.
+cocotb==2.1.0

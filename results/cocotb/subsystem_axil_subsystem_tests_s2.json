@@ -1,0 +1,52 @@
+{
+  "dut": "subsystem",
+  "toplevel": "subsystem_checker_top",
+  "module": "axil_subsystem_tests",
+  "seed": 2,
+  "results_xml": "results/cocotb/subsystem_axil_subsystem_tests_s2.xml",
+  "log": "results/cocotb/subsystem_axil_subsystem_tests_s2.log",
+  "tests": [
+    {
+      "name": "test_reset_state_and_ids",
+      "status": "PASS",
+      "time_s": 0.004,
+      "messages": []
+    },
+    {
+      "name": "test_address_map_and_responses",
+      "status": "PASS",
+      "time_s": 0.018,
+      "messages": []
+    },
+    {
+      "name": "test_two_masters_concurrent_access",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_uart_loopback_through_crossbar",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_gpio_pin_event_through_crossbar",
+      "status": "PASS",
+      "time_s": 0.003,
+      "messages": []
+    },
+    {
+      "name": "test_timer_expiry_through_crossbar",
+      "status": "PASS",
+      "time_s": 0.002,
+      "messages": []
+    },
+    {
+      "name": "test_randomized_register_traffic",
+      "status": "PASS",
+      "time_s": 0.016,
+      "messages": []
+    }
+  ]
+}

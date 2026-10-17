@@ -1,0 +1,73 @@
+# -----------------------------------------------------------------------------
+# formal/completion.sby -- transaction-level properties (BOUNDED, BMC).
+#
+# WHY THIS JOB EXISTS
+#   The harness's transaction-level properties are statements about the history
+#   of the crossbar boundary:
+#
+#     * no response without a request: a B/R reaches a master only while that
+#       master has a write/read outstanding that the harness watched being
+#       accepted,
+#     * the response a master sees is *its own* target's response (the owning
+#       slave's BRESP/RRESP/RDATA; the error target answers DECERR + zero data),
+#     * no cross-talk at the slave boundary: what a slave port is presented with
+#       is the payload of a master whose address decodes to that slave,
+#     * no duplicate and no phantom completion: a write/read cannot complete
+#       more times than it was accepted, and while one is outstanding strictly
+#       fewer completions than acceptances have been seen,
+#     * at most one outstanding write and one outstanding read per master, as
+#       counted at the master boundary.
+#
+#   Those properties need counters and outstanding-flags that are pure history,
+#   so they are not inductive and cannot be given an unbounded proof by
+#   1-induction: the induction step may legitimately start from a state in which
+#   the harness registers and the DUT's internal state disagree.  Formalizing
+#   them as bounded properties is the honest thing to do:
+#
+# WHAT THIS JOB PROVES
+#   Every property above, for EVERY possible behavior (arbitrary masters, even
+#   ones that violate the AXI hold rules; arbitrary targets, early, late or
+#   silent; reset asserted in any cycle, incl. mid-transaction; no assumption
+#   other than "rst is asserted at time 0"), up to the configured depth.
+#
+#   A pass means: no counterexample exists within that many cycles of reset.  A
+#   failure would be a real, reproducible counterexample - this is the job that
+#   found the write-slot hole in axi_lite_master_port (a second AW could be
+#   accepted between the AW and W dispatches of the first write; see
+#   docs/results.md, FINDINGS).
+#
+#   The unbounded part of the story for the same boundary comes from
+#   formal/routing.sby (the DUT's own invariants, including no-cross-talk at
+#   dispatch, proven by induction), and the long-sequence part from simulation,
+#   where the same accept/complete bookkeeping is checked on every cycle by the
+#   monitors and the scoreboard.
+#
+# Run from the repository root:  sby -f formal/completion.sby
+# -----------------------------------------------------------------------------
+[options]
+mode bmc
+depth 24
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv -formal -DAXIL_ASSERTIONS -I. \
+    axi_lite_address_decoder.sv \
+    axi_lite_arbiter.sv \
+    axil_error_slave.sv \
+    axi_lite_master_port.sv \
+    axi_lite_slave_port.sv \
+    axi_lite_crossbar.sv \
+    axil_crossbar_harness.sv
+prep -top axil_crossbar_harness -flatten
+
+[files]
+rtl/axil_defs.svh
+rtl/axi_lite_address_decoder.sv
+rtl/axi_lite_arbiter.sv
+rtl/axil_error_slave.sv
+rtl/axi_lite_master_port.sv
+rtl/axi_lite_slave_port.sv
+rtl/axi_lite_crossbar.sv
+formal/axil_crossbar_harness.sv

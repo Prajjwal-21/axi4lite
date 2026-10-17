@@ -1,0 +1,181 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Primary model header
+//
+// This header should be included by all source files instantiating the design.
+// The class here is then constructed to instantiate the design.
+// See the Verilator manual for examples.
+
+#ifndef VERILATED_VTOP_H_
+#define VERILATED_VTOP_H_  // guard
+
+#include "verilated.h"
+#include "svdpi.h"
+
+class Vtop__Syms;
+class Vtop___024root;
+
+// This class is the main interface to the Verilated model
+class alignas(VL_CACHE_LINE_BYTES) Vtop VL_NOT_FINAL : public VerilatedModel {
+    friend class Vtop__Syms;
+  private:
+    // Symbol table holding complete model state (owned by this class)
+    Vtop__Syms* const vlSymsp;
+    // Evaluation loop
+    VerilatedEvalLoop m_evalLoop;
+
+  public:
+
+    // CONSTEXPR CAPABILITIES
+    // Verilated with --trace?
+    static constexpr bool traceCapable = false;
+
+    // PORTS
+    // The application code writes and reads these signals to
+    // propagate new values into/out from the Verilated model.
+    VL_IN8(&clk,0,0);
+    VL_IN8(&rst,0,0);
+    VL_IN8(&u_awprot,2,0);
+    VL_IN8(&u_awvalid,0,0);
+    VL_OUT8(&u_awready,0,0);
+    VL_IN8(&u_wstrb,3,0);
+    VL_IN8(&u_wvalid,0,0);
+    VL_OUT8(&u_wready,0,0);
+    VL_OUT8(&u_bresp,1,0);
+    VL_OUT8(&u_bvalid,0,0);
+    VL_IN8(&u_bready,0,0);
+    VL_IN8(&u_arprot,2,0);
+    VL_IN8(&u_arvalid,0,0);
+    VL_OUT8(&u_arready,0,0);
+    VL_OUT8(&u_rresp,1,0);
+    VL_OUT8(&u_rvalid,0,0);
+    VL_IN8(&u_rready,0,0);
+    VL_IN8(&uart_rx,0,0);
+    VL_OUT8(&uart_tx,0,0);
+    VL_OUT8(&u_irq,0,0);
+    VL_IN8(&g_awprot,2,0);
+    VL_IN8(&g_awvalid,0,0);
+    VL_OUT8(&g_awready,0,0);
+    VL_IN8(&g_wstrb,3,0);
+    VL_IN8(&g_wvalid,0,0);
+    VL_OUT8(&g_wready,0,0);
+    VL_OUT8(&g_bresp,1,0);
+    VL_OUT8(&g_bvalid,0,0);
+    VL_IN8(&g_bready,0,0);
+    VL_IN8(&g_arprot,2,0);
+    VL_IN8(&g_arvalid,0,0);
+    VL_OUT8(&g_arready,0,0);
+    VL_OUT8(&g_rresp,1,0);
+    VL_OUT8(&g_rvalid,0,0);
+    VL_IN8(&g_rready,0,0);
+    VL_IN8(&gpio_in,7,0);
+    VL_OUT8(&gpio_out,7,0);
+    VL_OUT8(&gpio_dir,7,0);
+    VL_OUT8(&g_irq,0,0);
+    VL_IN8(&t_awprot,2,0);
+    VL_IN8(&t_awvalid,0,0);
+    VL_OUT8(&t_awready,0,0);
+    VL_IN8(&t_wstrb,3,0);
+    VL_IN8(&t_wvalid,0,0);
+    VL_OUT8(&t_wready,0,0);
+    VL_OUT8(&t_bresp,1,0);
+    VL_OUT8(&t_bvalid,0,0);
+    VL_IN8(&t_bready,0,0);
+    VL_IN8(&t_arprot,2,0);
+    VL_IN8(&t_arvalid,0,0);
+    VL_OUT8(&t_arready,0,0);
+    VL_OUT8(&t_rresp,1,0);
+    VL_OUT8(&t_rvalid,0,0);
+    VL_IN8(&t_rready,0,0);
+    VL_OUT8(&t_irq,0,0);
+    VL_IN(&u_awaddr,31,0);
+    VL_IN(&u_wdata,31,0);
+    VL_IN(&u_araddr,31,0);
+    VL_OUT(&u_rdata,31,0);
+    VL_IN(&g_awaddr,31,0);
+    VL_IN(&g_wdata,31,0);
+    VL_IN(&g_araddr,31,0);
+    VL_OUT(&g_rdata,31,0);
+    VL_IN(&t_awaddr,31,0);
+    VL_IN(&t_wdata,31,0);
+    VL_IN(&t_araddr,31,0);
+    VL_OUT(&t_rdata,31,0);
+
+    // CELLS
+    // Public to allow access to /* verilator public */ items.
+    // Otherwise the application code can consider these internals.
+
+    // Root instance pointer to allow access to model internals,
+    // including inlined /* verilator public_flat_* */ items.
+    Vtop___024root* const rootp;
+
+    // CONSTRUCTORS
+    /// Construct the model; called by application code
+    /// If contextp is null, then the model will use the default global context
+    /// If name is "", then makes a wrapper with a
+    /// single model invisible with respect to DPI scope names.
+    explicit Vtop(VerilatedContext* contextp, const char* name = "TOP");
+    explicit Vtop(const char* name = "TOP");
+    /// Destroy the model; called (often implicitly) by application code
+    virtual ~Vtop();
+  private:
+    VL_UNCOPYABLE(Vtop);  ///< Copying not allowed
+
+  public:
+    // API METHODS
+    /// Evaluate the model.  Application must call when inputs change.
+    void eval() { eval_step(); }
+    /// Evaluate when calling multiple units/models per time step.
+    void eval_step();
+    /// Evaluate at end of a timestep for tracing, when using eval_step().
+    /// Application must call after all eval() and before time changes.
+    void eval_end_step() {}
+    /// Simulation complete, run final blocks.  Application must call on completion.
+    void final();
+    /// Are there scheduled events to handle?
+    bool eventsPending();
+    /// Returns time at next time slot. Aborts if !eventsPending()
+    uint64_t nextTimeSlot();
+    /// Trace signals in the model; called by application code
+    void trace(VerilatedTraceBaseC* tfp, int levels, int options = 0) { contextp()->trace(tfp, levels, options); }
+    /// Retrieve name of this model instance (as passed to constructor).
+    const char* name() const;
+
+    // Abstract methods from VerilatedModel
+    const char* hierName() const override final;
+    const char* modelName() const override final;
+    unsigned threads() const override final;
+    /// Prepare for cloning the model at the process level (e.g. fork in Linux)
+    /// Release necessary resources. Called before cloning.
+    void prepareClone() const;
+    /// Re-init after cloning the model at the process level (e.g. fork in Linux)
+    /// Re-allocate necessary resources. Called after cloning.
+    void atClone() const;
+  private:
+
+    // Internal functions - the model's evaluation entry points
+    void evalBegin() override final;
+    void evalEnd() override final;
+    void evalStatic() override final;
+    void evalInitial() override final;
+    bool evalStl(bool firstIteration) override final;
+    void evalSample() override final;
+    bool evalIco(bool firstIteration) override final;
+    bool evalAct() override final;
+    bool evalInact() override final;
+    bool evalNba() override final;
+    bool evalObs() override final;
+    bool evalReact() override final;
+    void evalPostponed() override final;
+    void evalFinal() override final;
+    void dumpTriggersStl() override final;
+    void dumpTriggersIco() override final;
+    void dumpTriggersAct() override final;
+    void dumpTriggersNba() override final;
+    void dumpTriggersObs() override final;
+    void dumpTriggersReact() override final;
+
+    // Internal functions - trace registration
+    void traceBaseModel(VerilatedTraceBaseC* tfp, int levels, int options);
+};
+
+#endif  // guard

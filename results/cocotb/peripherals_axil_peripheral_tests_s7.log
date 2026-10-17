@@ -1,0 +1,85 @@
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/Python'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:234  in gpi_load_users                  Running entry func 'initialize' from loaded library '/Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb/simulator.cpython-314-darwin.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:115  in initialize                      Using Python 3.14.6 interpreter at /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 7
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Verilator version 5.052 2026-09-05
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_reset_values_and_ids (1/14)
+                                                            Every register reads its documented reset value and the correct ID.
+   470.00ns INFO     cocotb.peripheral_unit_harness     reset values and IDs OK; 42 model steps, 21 accesses
+   470.00ns INFO     cocotb.regression                  axil_peripheral_tests.test_reset_values_and_ids passed
+   470.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_ro_wo_and_bad_offsets (2/14)
+                                                            RO writes -> SLVERR, WO reads -> OKAY with 0, bad offsets -> SLVERR.
+  1340.00ns INFO     cocotb.peripheral_unit_harness     RO/WO direction and unimplemented-offset responses OK
+  1340.00ns INFO     cocotb.regression                  axil_peripheral_tests.test_ro_wo_and_bad_offsets passed
+  1340.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_wstrb_zero_and_partial (3/14)
+                                                            Partial strobes merge byte-wise; a zero strobe changes nothing.
+  2260.00ns INFO     cocotb.peripheral_unit_harness     WSTRB partial/zero merge rules OK
+  2260.00ns INFO     cocotb.regression                  axil_peripheral_tests.test_wstrb_zero_and_partial passed
+  2260.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_zero_strobe_has_no_effect (4/14)
+                                                            A WSTRB=0 write is accepted but triggers nothing, even in a race.
+  3506.00ns INFO     cocotb.peripheral_unit_harness     zero-strobe writes are side-effect free, including in the W1C races
+  3506.00ns INFO     cocotb.regression                  axil_peripheral_tests.test_zero_strobe_has_no_effect passed
+  3506.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_aw_w_arrival_orders (5/14)
+                                                            AW and W may arrive in either order and in different cycles.
+  4226.00ns INFO     cocotb.peripheral_unit_harness     independent AW/W arrival orders OK (7 combinations)
+  4226.00ns INFO     cocotb.regression                  axil_peripheral_tests.test_aw_w_arrival_orders passed
+  4226.00ns INFO     cocotb.regression                  running axil_peripheral_tests.test_read_before_write_same_cycle (6/14)
+                                                            A read accepted in the same cycle as a write returns the pre-write value.
+  4716.01ns INFO     cocotb.peripheral_unit_harness     read-before-write holds for same-address and cross-address pairs
+  4716.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_read_before_write_same_cycle passed
+  4716.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_timer_counting_and_period (7/14)
+                                                            VALUE counts down once per tick and wraps with period (LOAD+1).
+  5246.01ns INFO     cocotb.peripheral_unit_harness     period (LOAD+1) confirmed; LOAD=5 sequence [4, 2, 0, 4, 2, 0, 4, 2], LOAD=1 parity [0, 0, 0, 0]
+  5246.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_timer_counting_and_period passed
+  5246.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_timer_expiry_flags_oneshot_and_irq (8/14)
+                                                            Expiry sets INT_STATUS[0], auto-reloads, and one-shot clears EN.
+  5826.01ns INFO     cocotb.peripheral_unit_harness     expiry, sticky flag, auto-reload, one-shot and irq line OK
+  5826.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_timer_expiry_flags_oneshot_and_irq passed
+  5826.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_timer_prescaler_and_w1c_race (9/14)
+                                                            Prescaler tick rate, and W1C/expiry races on the same clock edge.
+  6816.01ns INFO     cocotb.peripheral_unit_harness     prescaler tick rate and all three W1C/expiry race outcomes OK
+  6816.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_timer_prescaler_and_w1c_race passed
+  6816.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_gpio_sync_latency_and_edges (10/14)
+                                                            IN is two flops deep; the change flag follows one edge later.
+  7446.01ns INFO     cocotb.peripheral_unit_harness     2-flop sync latency, flag edge, edge modes, DIR/OUT and IEN masking OK
+  7446.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_gpio_sync_latency_and_edges passed
+  7446.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_uart_tx_frame_and_bit_timing (11/14)
+                                                            A transmitted frame decodes to the written byte with an exact bit period.
+  9666.01ns INFO     cocotb.peripheral_unit_harness     TX frame content, bit timing, busy-drop and TX_EN gating OK
+  9666.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_uart_tx_frame_and_bit_timing passed
+  9666.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_uart_loopback_roundtrip (12/14)
+                                                            In loopback, a transmitted byte is received back into RXDATA.
+ 11766.01ns INFO     cocotb.peripheral_unit_harness     loopback round-trip for 4 bytes, incl. RXDATA read side effects
+ 11766.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_uart_loopback_roundtrip passed
+ 11766.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_uart_rx_frame_error_overrun_and_gating (13/14)
+                                                            RX framing error, overrun, and the RX_EN gate, with cycle-exact flags.
+ 14076.01ns INFO     cocotb.peripheral_unit_harness     frame error, overrun and RX_EN gating OK
+ 14076.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_uart_rx_frame_error_overrun_and_gating passed
+ 14076.01ns INFO     cocotb.regression                  running axil_peripheral_tests.test_checker_self_test (14/14)
+                                                            The model comparison must actually fail when the expectation is wrong.
+ 14246.01ns INFO     cocotb.peripheral_unit_harness     checker self-test: corrupted expectations are detected
+ 14246.01ns INFO     cocotb.regression                  axil_peripheral_tests.test_checker_self_test passed
+ 14246.01ns INFO     cocotb.regression                  ***************************************************************************************************************************
+                                                        ** TEST                                                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************************************
+                                                        ** axil_peripheral_tests.test_reset_values_and_ids                     PASS         470.00           0.00     170857.34  **
+                                                        ** axil_peripheral_tests.test_ro_wo_and_bad_offsets                    PASS         870.00           0.00     205430.93  **
+                                                        ** axil_peripheral_tests.test_wstrb_zero_and_partial                   PASS         920.00           0.00     230856.07  **
+                                                        ** axil_peripheral_tests.test_zero_strobe_has_no_effect                PASS        1246.00           0.00     263969.07  **
+                                                        ** axil_peripheral_tests.test_aw_w_arrival_orders                      PASS         720.00           0.00     246259.09  **
+                                                        ** axil_peripheral_tests.test_read_before_write_same_cycle             PASS         490.00           0.00     209955.04  **
+                                                        ** axil_peripheral_tests.test_timer_counting_and_period                PASS         530.00           0.00     235686.49  **
+                                                        ** axil_peripheral_tests.test_timer_expiry_flags_oneshot_and_irq       PASS         580.00           0.00     238356.20  **
+                                                        ** axil_peripheral_tests.test_timer_prescaler_and_w1c_race             PASS         990.00           0.00     233750.12  **
+                                                        ** axil_peripheral_tests.test_gpio_sync_latency_and_edges              PASS         630.00           0.00     248353.28  **
+                                                        ** axil_peripheral_tests.test_uart_tx_frame_and_bit_timing             PASS        2220.00           0.01     281909.24  **
+                                                        ** axil_peripheral_tests.test_uart_loopback_roundtrip                  PASS        2100.00           0.01     265211.52  **
+                                                        ** axil_peripheral_tests.test_uart_rx_frame_error_overrun_and_gating   PASS        2310.00           0.01     274174.47  **
+                                                        ** axil_peripheral_tests.test_checker_self_test                        PASS         170.00           0.00     211970.08  **
+                                                        ***************************************************************************************************************************
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                                 14246.01           0.06     238895.62  **
+                                                        ***************************************************************************************************************************
+- :0: Verilog $finish

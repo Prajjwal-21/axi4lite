@@ -1,0 +1,4 @@
+SBY 15:15:20 [completion_d16] engine_0: ##   0:00:02  BMC failed!
+SBY 15:15:20 [completion_d16] engine_0: ##   0:00:02  Assert failed in axil_crossbar_harness: ap_one_outstanding
+SBY 15:15:20 [completion_d16] engine_0: Status returned by engine: FAIL
+SBY 15:15:20 [completion_d16] DONE (FAIL, rc=2)

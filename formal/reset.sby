@@ -1,0 +1,57 @@
+# -----------------------------------------------------------------------------
+# formal/reset.sby -- the reset contract, with the reset time itself arbitrary.
+#
+# WHAT IS PROVEN (BOUNDED, mode bmc: for every behavior up to the depth below)
+#   R1  no AXI handshake can complete anywhere while rst is high (this part is
+#       the DUT's own assertion and is proven UNBOUNDED in formal/routing.sby),
+#   R2  after the most recent reset a master only sees a B/R for a request that
+#       was accepted after that reset -> an in-flight transaction is discarded
+#       and never completed,
+#   R3  the first cycle after a reset cycle has all master-side READYs high:
+#       deterministic recovery into the documented clean state,
+#   R4  after a reset the targets only see requests some master actually had
+#       accepted after that reset.
+#
+# WHY BMC AND NOT INDUCTION
+#   R2 and R4 are statements about what happened since the last reset, so they
+#   are carried by registers that record the history (the acceptance flags).  An
+#   induction step is allowed to start from a state where those flags and the
+#   DUT state disagree, so they are not inductive; the same claim over an
+#   unbounded horizon is covered by (a) the DUT's own reset-inertness asserts
+#   (unbounded, routing.sby) and (b) every simulated test, which resets in idle
+#   and in-flight states and checks the same bookkeeping cycle by cycle
+#   (tests/axil_crossbar_tests.py, tests/axil_subsystem_tests.py).
+#
+# ENVIRONMENT: rst is free (any cycle may be a reset cycle) and is only assumed
+# to be high at time 0, so the solver starts where a real reset would leave the
+# design.  Master- and slave-side inputs are free.
+#
+# Run from the repository root:  sby -f formal/reset.sby
+# -----------------------------------------------------------------------------
+[options]
+mode bmc
+depth 16
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -sv -formal -DAXIL_ASSERTIONS -I. \
+    axi_lite_address_decoder.sv \
+    axi_lite_arbiter.sv \
+    axil_error_slave.sv \
+    axi_lite_master_port.sv \
+    axi_lite_slave_port.sv \
+    axi_lite_crossbar.sv \
+    axil_reset_harness.sv
+prep -top axil_reset_harness -flatten
+
+[files]
+rtl/axil_defs.svh
+rtl/axi_lite_address_decoder.sv
+rtl/axi_lite_arbiter.sv
+rtl/axil_error_slave.sv
+rtl/axi_lite_master_port.sv
+rtl/axi_lite_slave_port.sv
+rtl/axi_lite_crossbar.sv
+formal/axil_reset_harness.sv

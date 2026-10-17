@@ -1,0 +1,28 @@
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/Python'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:234  in gpi_load_users                  Running entry func 'initialize' from loaded library '/Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb/simulator.cpython-314-darwin.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:115  in initialize                      Using Python 3.14.6 interpreter at /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 1
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Verilator version 5.052 2026-09-05
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running axil_env_tests.test_timing_convention (1/3)
+                                                            A value driven at the falling edge is captured by the rising edge that
+    46.00ns INFO     cocotb.conv_probe                  timing convention: value right after the rising-edge trigger = 0, value 1 ns later = 5
+    50.00ns INFO     cocotb.regression                  axil_env_tests.test_timing_convention passed
+    50.00ns INFO     cocotb.regression                  running axil_env_tests.test_cycle_counting (2/3)
+                                                            `Cycle.sample()`/`tick()` count exactly one clock cycle each.
+   170.00ns INFO     cocotb.regression                  axil_env_tests.test_cycle_counting passed
+   170.00ns INFO     cocotb.regression                  running axil_env_tests.test_reset_holds_register (3/3)
+                                                            Reset is synchronous and holds the register at zero while asserted.
+   216.00ns INFO     cocotb.regression                  axil_env_tests.test_reset_holds_register passed
+   216.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** axil_env_tests.test_timing_convention      PASS          50.00           0.00     136472.19  **
+                                                        ** axil_env_tests.test_cycle_counting         PASS         120.00           0.00     418058.75  **
+                                                        ** axil_env_tests.test_reset_holds_register   PASS          46.00           0.00     416131.43  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                            216.00           0.00     147044.37  **
+                                                        **************************************************************************************************
+- :0: Verilog $finish

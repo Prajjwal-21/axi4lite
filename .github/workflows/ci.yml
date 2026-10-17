@@ -1,0 +1,190 @@
+# -----------------------------------------------------------------------------
+# CI -- what runs on every push/PR, what runs on schedule/manual dispatch.
+#
+# Every `run:` line here is the same command the local Makefile and the
+# documentation quote, so a green CI and a green local `make` mean the same
+# thing (see docs/verification_plan.md section "How to run").
+#
+# Tool sourcing, deliberately different per job:
+#   * rtl-checks / formal-deep / mutation use YosysHQ/setup-oss-cad-suite
+#     (yosys, sby, and a bundled verilator),
+#   * the simulation regression installs Verilator from apt and cocotb from
+#     requirements.txt, because scripts/run_tests.py removes oss-cad-suite
+#     directories from PATH before launching simulators (the environment
+#     sanitation that makes local regression runs reproducible), so the sim
+#     job must not depend on oss-cad-suite binaries.
+#
+# Long jobs do not run on every push:
+#   * formal-deep (completion depth 24, progress depth 64): weekly schedule +
+#     manual dispatch -- completion alone takes about an hour of solver time,
+#   * mutation: manual dispatch only -- it runs the full regression once per
+#     mutant on top of the formal cross-check runs.
+# -----------------------------------------------------------------------------
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1" # weekly deep run, Mondays 03:17 UTC
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Fast RTL-side checks: lint (both assertion modes), synthesis statistics,
+  # and the three short formal jobs.  The routing proof is unbounded
+  # (k-induction), so this job carries the strongest single-evidence item.
+  # ---------------------------------------------------------------------------
+  rtl-checks:
+    name: lint + synth + fast formal
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install OSS CAD Suite (yosys, sby, verilator)
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verilator lint, RTL + TB harnesses, both assertion modes
+        run: scripts/lint.sh
+
+      - name: Generic synthesis + cell/flop statistics
+        run: make synth
+
+      - name: "Formal: decoder (prove)"
+        run: sby -f formal/decode.sby
+
+      - name: "Formal: reset inertness (BMC 16)"
+        run: sby -f formal/reset.sby
+
+      - name: "Formal: routing (unbounded k-induction)"
+        run: sby -f formal/routing.sby
+
+      - name: Upload evidence logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rtl-checks-logs
+          path: |
+            results/synth/
+            formal/*/logfile.txt
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # The cocotb regression: four DUTs, seeds 1,2,3,7 (152 tests per full sweep).
+  # ---------------------------------------------------------------------------
+  regression:
+    name: cocotb regression (seeds 1,2,3,7)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python requirements (cocotb)
+        run: python -m pip install -r requirements.txt
+
+      - name: Install Verilator (distro build)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator
+          verilator --version
+
+      - name: Regression, seeds 1,2,3,7
+        run: python scripts/run_tests.py --seeds 1,2,3,7 --tool-versions
+
+      - name: Upload results (xUnit, logs, tool versions)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-results
+          path: results/
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Deep bounded model checking.  completion (boundary transaction properties,
+  # depth 24) has been seen at ~1 h of solver time; progress (liveness with
+  # scripted masters and bounded-latency slave models, depth 64) is smaller.
+  # ---------------------------------------------------------------------------
+  formal-deep:
+    name: deep BMC (completion 24, progress 64)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install OSS CAD Suite (yosys, sby)
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Formal: progress (BMC depth 64)"
+        run: sby -f formal/progress.sby
+
+      - name: "Formal: completion (BMC depth 24)"
+        run: sby -f formal/completion.sby
+
+      - name: Upload evidence logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: formal-deep-logs
+          path: |
+            formal/progress/
+            formal/completion/
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Mutation testing with the formal cross-check: every surviving mutant is
+  # re-examined by the unbounded routing proof, and the report records both
+  # verdicts side by side (results/mutation/summary.md).
+  # ---------------------------------------------------------------------------
+  mutation:
+    name: mutation testing (sim + formal cross-check)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install OSS CAD Suite (sby for the formal cross-check)
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Python requirements (cocotb)
+        run: python -m pip install -r requirements.txt
+
+      - name: Install Verilator (distro build; sim path, see header)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator
+          verilator --version
+
+      - name: Mutation suite, simulation verdicts + routing.sby per mutant
+        run: python scripts/mutation_test.py --formal
+
+      - name: Upload mutation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutation-results
+          path: results/mutation/
+          if-no-files-found: warn

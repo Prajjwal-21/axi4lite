@@ -1,0 +1,25 @@
+SBY 15:11:49 [formal/reset] engine_0: ##   0:00:02  Checking assertions in step 7..
+SBY 15:11:51 [formal/reset] engine_0: ##   0:00:03  Checking assumptions in step 8..
+SBY 15:11:51 [formal/reset] engine_0: ##   0:00:03  Checking assertions in step 8..
+SBY 15:11:53 [formal/reset] engine_0: ##   0:00:05  Checking assumptions in step 9..
+SBY 15:11:53 [formal/reset] engine_0: ##   0:00:05  Checking assertions in step 9..
+SBY 15:11:57 [formal/reset] engine_0: ##   0:00:09  Checking assumptions in step 10..
+SBY 15:11:57 [formal/reset] engine_0: ##   0:00:09  Checking assertions in step 10..
+SBY 15:12:02 [formal/reset] engine_0: ##   0:00:14  Checking assumptions in step 11..
+SBY 15:12:02 [formal/reset] engine_0: ##   0:00:14  Checking assertions in step 11..
+SBY 15:12:07 [formal/reset] engine_0: ##   0:00:19  Checking assumptions in step 12..
+SBY 15:12:07 [formal/reset] engine_0: ##   0:00:19  Checking assertions in step 12..
+SBY 15:12:16 [formal/reset] engine_0: ##   0:00:28  Checking assumptions in step 13..
+SBY 15:12:18 [formal/reset] engine_0: ##   0:00:30  Checking assertions in step 13..
+SBY 15:12:31 [formal/reset] engine_0: ##   0:00:43  Checking assumptions in step 14..
+SBY 15:12:32 [formal/reset] engine_0: ##   0:00:44  Checking assertions in step 14..
+SBY 15:12:44 [formal/reset] engine_0: ##   0:00:56  Checking assumptions in step 15..
+SBY 15:12:45 [formal/reset] engine_0: ##   0:00:57  Checking assertions in step 15..
+SBY 15:13:03 [formal/reset] engine_0: ##   0:01:15  Status: passed
+SBY 15:13:03 [formal/reset] engine_0: finished (returncode=0)
+SBY 15:13:03 [formal/reset] engine_0: Status returned by engine: pass
+SBY 15:13:03 [formal/reset] summary: Elapsed clock time [H:MM:SS (secs)]: 0:01:16 (76)
+SBY 15:13:03 [formal/reset] summary: Elapsed process time [H:MM:SS (secs)]: 0:01:12 (72)
+SBY 15:13:03 [formal/reset] summary: engine_0 (smtbmc z3) returned pass
+SBY 15:13:03 [formal/reset] summary: engine_0 did not produce any traces
+SBY 15:13:03 [formal/reset] DONE (PASS, rc=0)

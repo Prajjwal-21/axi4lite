@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+sim_build/
+obj_dir/
+results/raw/
+results/mutation/work/
+.tmp*/
+*.vcd
+!docs/waveforms/*.vcd
+*.fst
+formal/*/
+formal/**/engine_0/
+build/

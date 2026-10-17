@@ -1,0 +1,51 @@
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/Python'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:234  in gpi_load_users                  Running entry func 'initialize' from loaded library '/Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb/simulator.cpython-314-darwin.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:115  in initialize                      Using Python 3.14.6 interpreter at /Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 1
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /Users/prajjwalsingh/Desktop/axilite4/.venv/lib/python3.14/site-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on Verilator version 5.052 2026-09-05
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_reset_state_and_ids (1/7)
+                                                            Both masters read the three ID registers and the documented reset values;
+   730.00ns INFO     cocotb.subsystem_checker_top       reset state, IDs and quiet pins OK (both masters)
+   730.00ns INFO     cocotb.regression                  axil_subsystem_tests.test_reset_state_and_ids passed
+   730.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_address_map_and_responses (2/7)
+                                                            Decode through the real subsystem: in-region unimplemented offsets are
+  5200.00ns INFO     cocotb.subsystem_checker_top       decode OK: 7 unimplemented offsets per region, 20 unmapped addresses, alias base+0x44 == base+0x04
+  5200.00ns INFO     cocotb.regression                  axil_subsystem_tests.test_address_map_and_responses passed
+  5200.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_two_masters_concurrent_access (3/7)
+                                                            Both masters access the subsystem at the same time: different
+  5950.00ns INFO     cocotb.subsystem_checker_top       two-master concurrency and no cross-talk OK
+  5950.00ns INFO     cocotb.regression                  axil_subsystem_tests.test_two_masters_concurrent_access passed
+  5950.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_uart_loopback_through_crossbar (4/7)
+                                                            A byte written through the crossbar goes out on uart_tx and comes back in
+  6800.00ns INFO     cocotb.subsystem_checker_top       loopback 0x5a round trip OK (RX_VALID after 40 cycles, TX_READY 4 cycles later)
+  6800.00ns INFO     cocotb.regression                  axil_subsystem_tests.test_uart_loopback_through_crossbar passed
+  6800.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_gpio_pin_event_through_crossbar (5/7)
+                                                            Drive a GPIO pin, observe the two-edge synchroniser, the change flag, the
+  7380.00ns INFO     cocotb.subsystem_checker_top       GPIO synchroniser, change flag, W1C and irq routing OK
+  7380.00ns INFO     cocotb.regression                  axil_subsystem_tests.test_gpio_pin_event_through_crossbar passed
+  7380.00ns INFO     cocotb.regression                  running axil_subsystem_tests.test_timer_expiry_through_crossbar (6/7)
+                                                            Program the timer through the crossbar and observe the expiry, the sticky
+  7910.01ns INFO     cocotb.subsystem_checker_top       timer expiry, sticky flag, irq and clear OK (flag after 4 cycles)
+  7910.01ns INFO     cocotb.regression                  axil_subsystem_tests.test_timer_expiry_through_crossbar passed
+  7910.01ns INFO     cocotb.regression                  running axil_subsystem_tests.test_randomized_register_traffic (7/7)
+                                                            Seeded randomized read/write traffic from both masters over the plain
+  7910.01ns INFO     cocotb.subsystem_checker_top       randomized subsystem traffic seed = 247234530628652229949843235813539327610421485598
+ 11420.01ns INFO     cocotb.subsystem_checker_top       randomized subsystem traffic OK: 60 writes, 20 reads, 4 DECERR and 4 SLVERR probes, 71 overlapping master transaction pairs
+ 11420.01ns INFO     cocotb.regression                  axil_subsystem_tests.test_randomized_register_traffic passed
+ 11420.01ns INFO     cocotb.regression                  *******************************************************************************************************************
+                                                        ** TEST                                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *******************************************************************************************************************
+                                                        ** axil_subsystem_tests.test_reset_state_and_ids               PASS         730.00           0.00     198905.58  **
+                                                        ** axil_subsystem_tests.test_address_map_and_responses         PASS        4470.00           0.02     244958.92  **
+                                                        ** axil_subsystem_tests.test_two_masters_concurrent_access     PASS         750.00           0.00     214817.66  **
+                                                        ** axil_subsystem_tests.test_uart_loopback_through_crossbar    PASS         850.00           0.00     256365.17  **
+                                                        ** axil_subsystem_tests.test_gpio_pin_event_through_crossbar   PASS         580.00           0.00     225512.72  **
+                                                        ** axil_subsystem_tests.test_timer_expiry_through_crossbar     PASS         530.00           0.00     254354.26  **
+                                                        ** axil_subsystem_tests.test_randomized_register_traffic       PASS        3510.00           0.02     209514.20  **
+                                                        *******************************************************************************************************************
+                                                        ** TESTS=7 PASS=7 FAIL=0 SKIP=0                                           11420.01           0.05     221678.28  **
+                                                        *******************************************************************************************************************
+- :0: Verilog $finish

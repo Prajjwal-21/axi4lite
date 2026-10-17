@@ -1,0 +1,16 @@
+Vtop__pch.h.fast.gch: \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/SDKSettings.json \
+  Vtop__pch.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_config.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilatedos.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_types.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_funcs.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_dpi.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_sym_props.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/vltstd/svdpi.h \
+  Vtop__Syms.h Vtop.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_cov.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_covergroup.h \
+  /opt/homebrew/Cellar/verilator/5.052/share/verilator/include/verilated_cov_model.h \
+  Vtop___024root.h Vtop_axi_lite_slave_port.h

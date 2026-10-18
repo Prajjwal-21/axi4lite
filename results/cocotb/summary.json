@@ -1,12 +1,12 @@
 {
   "totals": {
-    "PASS": 38,
+    "PASS": 152,
     "FAIL": 0,
     "SKIP": 0
   },
   "failures": [],
   "modules": {
-    "crossbar/axil_crossbar_tests": [
+    "crossbar/axil_crossbar_tests@s1": [
       {
         "name": "test_simultaneous_distinct_slaves",
         "status": "PASS"
@@ -64,7 +64,181 @@
         "status": "PASS"
       }
     ],
-    "peripherals/axil_peripheral_tests": [
+    "crossbar/axil_crossbar_tests@s2": [
+      {
+        "name": "test_simultaneous_distinct_slaves",
+        "status": "PASS"
+      },
+      {
+        "name": "test_simultaneous_same_slave",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_channel_backpressure",
+        "status": "PASS"
+      },
+      {
+        "name": "test_delayed_response_routing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_partial_and_zero",
+        "status": "PASS"
+      },
+      {
+        "name": "test_invalid_address_decerr",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_idle_and_in_flight",
+        "status": "PASS"
+      },
+      {
+        "name": "test_concurrent_read_write",
+        "status": "PASS"
+      },
+      {
+        "name": "test_contention_round_robin",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_multi_master",
+        "status": "PASS"
+      },
+      {
+        "name": "test_fault_injection_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_deadlock_is_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_second_aw_held_off",
+        "status": "PASS"
+      }
+    ],
+    "crossbar/axil_crossbar_tests@s3": [
+      {
+        "name": "test_simultaneous_distinct_slaves",
+        "status": "PASS"
+      },
+      {
+        "name": "test_simultaneous_same_slave",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_channel_backpressure",
+        "status": "PASS"
+      },
+      {
+        "name": "test_delayed_response_routing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_partial_and_zero",
+        "status": "PASS"
+      },
+      {
+        "name": "test_invalid_address_decerr",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_idle_and_in_flight",
+        "status": "PASS"
+      },
+      {
+        "name": "test_concurrent_read_write",
+        "status": "PASS"
+      },
+      {
+        "name": "test_contention_round_robin",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_multi_master",
+        "status": "PASS"
+      },
+      {
+        "name": "test_fault_injection_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_deadlock_is_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_second_aw_held_off",
+        "status": "PASS"
+      }
+    ],
+    "crossbar/axil_crossbar_tests@s7": [
+      {
+        "name": "test_simultaneous_distinct_slaves",
+        "status": "PASS"
+      },
+      {
+        "name": "test_simultaneous_same_slave",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_channel_backpressure",
+        "status": "PASS"
+      },
+      {
+        "name": "test_delayed_response_routing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_partial_and_zero",
+        "status": "PASS"
+      },
+      {
+        "name": "test_invalid_address_decerr",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_idle_and_in_flight",
+        "status": "PASS"
+      },
+      {
+        "name": "test_concurrent_read_write",
+        "status": "PASS"
+      },
+      {
+        "name": "test_contention_round_robin",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_multi_master",
+        "status": "PASS"
+      },
+      {
+        "name": "test_fault_injection_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_deadlock_is_detected",
+        "status": "PASS"
+      },
+      {
+        "name": "test_second_aw_held_off",
+        "status": "PASS"
+      }
+    ],
+    "peripherals/axil_peripheral_tests@s1": [
       {
         "name": "test_reset_values_and_ids",
         "status": "PASS"
@@ -122,7 +296,181 @@
         "status": "PASS"
       }
     ],
-    "probe/axil_env_tests": [
+    "peripherals/axil_peripheral_tests@s2": [
+      {
+        "name": "test_reset_values_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_ro_wo_and_bad_offsets",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_zero_and_partial",
+        "status": "PASS"
+      },
+      {
+        "name": "test_zero_strobe_has_no_effect",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_read_before_write_same_cycle",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_counting_and_period",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_flags_oneshot_and_irq",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_prescaler_and_w1c_race",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_sync_latency_and_edges",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_tx_frame_and_bit_timing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_roundtrip",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_rx_frame_error_overrun_and_gating",
+        "status": "PASS"
+      },
+      {
+        "name": "test_checker_self_test",
+        "status": "PASS"
+      }
+    ],
+    "peripherals/axil_peripheral_tests@s3": [
+      {
+        "name": "test_reset_values_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_ro_wo_and_bad_offsets",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_zero_and_partial",
+        "status": "PASS"
+      },
+      {
+        "name": "test_zero_strobe_has_no_effect",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_read_before_write_same_cycle",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_counting_and_period",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_flags_oneshot_and_irq",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_prescaler_and_w1c_race",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_sync_latency_and_edges",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_tx_frame_and_bit_timing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_roundtrip",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_rx_frame_error_overrun_and_gating",
+        "status": "PASS"
+      },
+      {
+        "name": "test_checker_self_test",
+        "status": "PASS"
+      }
+    ],
+    "peripherals/axil_peripheral_tests@s7": [
+      {
+        "name": "test_reset_values_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_ro_wo_and_bad_offsets",
+        "status": "PASS"
+      },
+      {
+        "name": "test_wstrb_zero_and_partial",
+        "status": "PASS"
+      },
+      {
+        "name": "test_zero_strobe_has_no_effect",
+        "status": "PASS"
+      },
+      {
+        "name": "test_aw_w_arrival_orders",
+        "status": "PASS"
+      },
+      {
+        "name": "test_read_before_write_same_cycle",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_counting_and_period",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_flags_oneshot_and_irq",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_prescaler_and_w1c_race",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_sync_latency_and_edges",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_tx_frame_and_bit_timing",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_roundtrip",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_rx_frame_error_overrun_and_gating",
+        "status": "PASS"
+      },
+      {
+        "name": "test_checker_self_test",
+        "status": "PASS"
+      }
+    ],
+    "probe/axil_env_tests@s1": [
       {
         "name": "test_timing_convention",
         "status": "PASS"
@@ -136,7 +484,139 @@
         "status": "PASS"
       }
     ],
-    "subsystem/axil_subsystem_tests": [
+    "probe/axil_env_tests@s2": [
+      {
+        "name": "test_timing_convention",
+        "status": "PASS"
+      },
+      {
+        "name": "test_cycle_counting",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_holds_register",
+        "status": "PASS"
+      }
+    ],
+    "probe/axil_env_tests@s3": [
+      {
+        "name": "test_timing_convention",
+        "status": "PASS"
+      },
+      {
+        "name": "test_cycle_counting",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_holds_register",
+        "status": "PASS"
+      }
+    ],
+    "probe/axil_env_tests@s7": [
+      {
+        "name": "test_timing_convention",
+        "status": "PASS"
+      },
+      {
+        "name": "test_cycle_counting",
+        "status": "PASS"
+      },
+      {
+        "name": "test_reset_holds_register",
+        "status": "PASS"
+      }
+    ],
+    "subsystem/axil_subsystem_tests@s1": [
+      {
+        "name": "test_reset_state_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_address_map_and_responses",
+        "status": "PASS"
+      },
+      {
+        "name": "test_two_masters_concurrent_access",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_pin_event_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_register_traffic",
+        "status": "PASS"
+      }
+    ],
+    "subsystem/axil_subsystem_tests@s2": [
+      {
+        "name": "test_reset_state_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_address_map_and_responses",
+        "status": "PASS"
+      },
+      {
+        "name": "test_two_masters_concurrent_access",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_pin_event_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_register_traffic",
+        "status": "PASS"
+      }
+    ],
+    "subsystem/axil_subsystem_tests@s3": [
+      {
+        "name": "test_reset_state_and_ids",
+        "status": "PASS"
+      },
+      {
+        "name": "test_address_map_and_responses",
+        "status": "PASS"
+      },
+      {
+        "name": "test_two_masters_concurrent_access",
+        "status": "PASS"
+      },
+      {
+        "name": "test_uart_loopback_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_gpio_pin_event_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_timer_expiry_through_crossbar",
+        "status": "PASS"
+      },
+      {
+        "name": "test_randomized_register_traffic",
+        "status": "PASS"
+      }
+    ],
+    "subsystem/axil_subsystem_tests@s7": [
       {
         "name": "test_reset_state_and_ids",
         "status": "PASS"

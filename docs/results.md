@@ -1,11 +1,14 @@
 # Recorded results
 
 Every number in this file was produced by the commands quoted next to it on
-the toolchain of §8, on 2026-10-17.  Raw evidence paths are given per section;
-`docs/verification_plan.md` §11 maps every command to its `make` target.
-Nothing here is estimated, and the honest negative results (unhit coverage
-bins, surviving mutants, bounded claim levels) are as much part of the record
-as the passes.
+the toolchain of §8; the original evidence was recorded on 2026-10-17 and
+every command was re-run end-to-end on 2026-10-18 with identical verdicts
+(the only refreshed numbers are the ones quoted below, which are the current
+deterministic outputs of their commands).  Raw evidence paths are given per
+section; `docs/verification_plan.md` §11 maps every command to its `make`
+target.  Nothing here is estimated, and the honest negative results (unhit
+coverage bins, surviving mutants, bounded claim levels) are as much part of
+the record as the passes.
 
 The RTL was frozen as two revisions during this phase:
 
@@ -44,7 +47,9 @@ Command: `make lint` = `scripts/lint.sh` (Verilator 5.052 `-Wall`).
 
 * **LINT CLEAN (28 passes)**: 11 RTL modules x {plain, `-DAXIL_ASSERTIONS`},
   the boundary checker x {slave, master} parameterizations, and the four TB
-  tops - including all harnesses that instantiate the checker.
+  tops - including all harnesses that instantiate the checker.  The full
+  console transcript is recorded at `results/lint/lint_console.log`
+  (written by `scripts/lint.sh` itself).
 
 Evidence: `results/lint/`.
 
@@ -94,16 +99,17 @@ tables show where the unmatched toggles live instead of hiding them.
 
 ## 4. Formal
 
-Commands: `sby -f formal/<job>.sby` from the repository root (fast jobs:
-`make formal`; deep jobs: `make formal-deep`).
+Commands: `sby -f formal/<job>.sby` from the repository root (four fast jobs:
+`make formal`, which also runs the unbounded `progress` PDR proof; the slow
+BMC `completion` alone is `make formal-deep`).
 
 | job | mode / bound | result | solve time | evidence |
 |---|---|---|---|---|
 | `decode` | k-induction, **unbounded** | **PASS** | < 1 s | `results/formal/decode.txt` |
 | `routing` | k-induction, **unbounded** | **PASS** | 13 s | `results/formal/routing.txt` |
 | `reset` | BMC 16 | **PASS** | 76 s | `results/formal/reset.txt` |
-| `completion` | BMC 24 | **PASS** | 1 h 08 m | `results/formal/completion.txt` |
-| `progress` | BMC 64 | **PENDING** | - | `results/formal/progress.txt` |
+| `completion` | BMC 24 | **PASS** | 46 m | `results/formal/completion.txt` |
+| `progress` | PDR, **unbounded** | **PASS** | 7 s | `results/formal/progress.txt` |
 
 The sby workdirs (`formal/<job>/`) are regenerable build products and are
 git-ignored; the committed evidence files under `results/formal/` are the
@@ -130,10 +136,10 @@ What the two strong rows mean, exactly:
 without a request, response ownership (a master's B/R comes from the target
 its mapping says, with matching code and data), no duplicate or phantom
 completion, at most one outstanding write/read per master, and the
-`ap_one_outstanding` boundary discipline.  `progress` (BMC 64) checks
-bounded-latency progress for scripted masters against the harness's
+`ap_one_outstanding` boundary discipline.  `progress` (PDR, unbounded)
+proves bounded-latency progress for scripted masters against the harness's
 deadline windows (AW/R within 16 cycles, whole write transaction within 32)
-and bounded-latency slave models.
+against the documented bounded-latency slave models.
 
 r1 transfer: the two r1 assertions are tautologies over r0 (see the header),
 so the r0 `completion`/`progress` verdicts apply to r1; `routing`, `decode`
@@ -157,6 +163,25 @@ counterexample had to be attributed to *either* the design *or* the
 environment, and the trace decided it - which is precisely why the progress
 harness's environment (scripted BFMs with deadlines, bounded-latency slave
 models) is documented next to the claim instead of being implicit.
+
+After the BFM fix, the z3 re-run at depth 64 turned out to be infeasible on
+a laptop: per-step solve time grows super-linearly (~5 s at step 20, ~1.5
+min at step 34, ~5-6 min per step by steps 41-48; step 49 alone stalled for
+more than 27 minutes and that run was terminated at ~2 h without reaching a
+verdict).  The properties behind `progress` are safety invariants (the
+harness wait counters bounded by their limits), so the job was re-targeted
+from incremental BMC to Property-Directed Reachability (`mode prove` +
+`abc pdr`), which computes an over-approximation of the reachable states
+instead of unrolling: it proved **all 108 assertion outputs unbounded in
+~6-7 s** - a strictly stronger claim than any BMC depth.  The proof was
+shown binding by re-running it once with a deliberately sabotaged
+environment (a slave model answering the wrong response code, reverted
+afterwards): the engine there reported **FAIL within ~5 s**, so a green
+PASS cannot be vacuous.  The sabotaged run's sby summary prints
+`DONE (ERROR, rc=16)` only because rendering the counterexample trail
+crashed on an unrelated tooling issue (`yosys-witness` cannot import its
+`click` dependency); the binding evidence is the engine verdict line
+`engine_0 (abc pdr) returned FAIL`.
 
 ## 5. Mutation testing
 
@@ -280,10 +305,12 @@ a wider NMST configuration could turn into a real test).
 Command: `make synth` = `yosys -l results/synth/synth_peripheral_subsystem.log
 -s scripts/synth.ys` (generic mapping of `peripheral_subsystem`).
 
-* **4,736 cells**, **773 flip-flops** (655 `$_SDFFE_PP0P_`, 41
-  `$_SDFFE_PP1P_`, 41 `$_SDFF_PP0_`, 32 `$_SDFF_PP1_`, 4 `$_DFF_P_`), 4
-  submodule parameterizations (crossbar + 3 register files); 1.1 s, 44 MB
-  peak.
+* **4,774 cells**, **773 flip-flops** (641 `$_SDFFE_PP0P_`, 41
+  `$_SDFFE_PP1P_`, 55 `$_SDFF_PP0_`, 32 `$_SDFF_PP1_`, 4 `$_DFF_P_`), 4
+  submodule parameterizations (crossbar + 3 register files); 1.17 s, 44 MB
+  peak.  (The 4,736-cell figure recorded earlier in the project predates the
+  final RTL freeze; the current RTL re-synthesizes to 4,774 deterministically
+  - rerun `make synth` twice and the stat block is bit-identical.)
 
 This is a generic-gate count with no timing model - it demonstrates that the
 design synthesizes cleanly and that the state count is small and explicable,
@@ -341,6 +368,33 @@ Verilator for the simulation job - exact commands in
 | decode proof (unbounded) | `sby -f formal/decode.sby` | < 1 s |
 | routing proof (unbounded) | `sby -f formal/routing.sby` | 13 s |
 | reset (BMC 16) | `sby -f formal/reset.sby` | 76 s |
-| completion (BMC 24) | `sby -f formal/completion.sby` | 1 h 8 m 30 s |
-| progress (BMC 64) | `sby -f formal/progress.sby` | see §4 |
+| completion (BMC 24) | `sby -f formal/completion.sby` | 45 m 56 s |
+| progress (PDR, unbounded) | `sby -f formal/progress.sby` | 7 s |
 | mutation suite (incl. formal cross-check) | `scripts/mutation_test.py --formal` | ~2.5 min |
+
+## 10. Evidence gallery (waveforms and screenshots)
+
+The cycle-level behaviour behind these numbers is committed as a gallery: one
+waveform figure per required scenario (`docs/screenshots/08`-`18`, each drawn
+from a committed trace in `docs/waveforms/`), plus terminal-style excerpts of
+each layer's output (`01`-`07`).  Both are regenerated from a clean checkout -
+`make waves` re-captures the traces from the passing tests and renders them;
+`make screens` re-renders the terminal excerpts from the recorded files under
+`results/`.  Index and per-figure sources: `docs/screenshots/README.md`.
+
+Gallery highlights, in the figure numbering of `docs/screenshots/`:
+
+* `09` distinct-slave parallelism (both masters in flight to different
+  targets in the same window),
+* `10` same-slave contention - the slave side shows the two grants serialized
+  and `s1.awaddr` switching to the granted master's payload,
+* `11` AW/W arrival-order independence (W-first, AW-first, same-cycle),
+* `12` delayed-response routing (B +12 / R +15 cycles, owner-only delivery),
+* `13` every WSTRB pattern with the accumulated read-back value,
+* `14` DECERR/zero-data on every unmapped access with all real slave ports
+  idle,
+* `15` reset inertness and mid-transaction abandonment (no late response),
+* `16` concurrent read+write through the independent per-direction arbiters,
+* `17` round-robin fairness under continuous contention (alternating
+  completions),
+* `18` one-outstanding discipline (second AW held until the first write's B).

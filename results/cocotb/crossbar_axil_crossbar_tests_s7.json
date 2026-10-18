@@ -9,13 +9,13 @@
     {
       "name": "test_simultaneous_distinct_slaves",
       "status": "PASS",
-      "time_s": 0.004,
+      "time_s": 0.005,
       "messages": []
     },
     {
       "name": "test_simultaneous_same_slave",
       "status": "PASS",
-      "time_s": 0.004,
+      "time_s": 0.003,
       "messages": []
     },
     {
@@ -27,25 +27,25 @@
     {
       "name": "test_channel_backpressure",
       "status": "PASS",
-      "time_s": 0.027,
+      "time_s": 0.026,
       "messages": []
     },
     {
       "name": "test_delayed_response_routing",
       "status": "PASS",
-      "time_s": 0.011,
+      "time_s": 0.013,
       "messages": []
     },
     {
       "name": "test_wstrb_partial_and_zero",
       "status": "PASS",
-      "time_s": 0.012,
+      "time_s": 0.014,
       "messages": []
     },
     {
       "name": "test_invalid_address_decerr",
       "status": "PASS",
-      "time_s": 0.014,
+      "time_s": 0.017,
       "messages": []
     },
     {
@@ -63,13 +63,13 @@
     {
       "name": "test_contention_round_robin",
       "status": "PASS",
-      "time_s": 0.008,
+      "time_s": 0.01,
       "messages": []
     },
     {
       "name": "test_randomized_multi_master",
       "status": "PASS",
-      "time_s": 0.036,
+      "time_s": 0.047,
       "messages": []
     },
     {
@@ -81,13 +81,13 @@
     {
       "name": "test_deadlock_is_detected",
       "status": "PASS",
-      "time_s": 0.006,
+      "time_s": 0.007,
       "messages": []
     },
     {
       "name": "test_second_aw_held_off",
       "status": "PASS",
-      "time_s": 0.004,
+      "time_s": 0.009,
       "messages": []
     }
   ]

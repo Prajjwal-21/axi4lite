@@ -101,21 +101,21 @@
   7683.01ns INFO     cocotb.regression                  ***************************************************************************************************************
                                                         ** TEST                                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         ***************************************************************************************************************
-                                                        ** axil_crossbar_tests.test_simultaneous_distinct_slaves   PASS         130.00           0.00      33645.70  **
-                                                        ** axil_crossbar_tests.test_simultaneous_same_slave        PASS         150.00           0.00      52804.50  **
-                                                        ** axil_crossbar_tests.test_aw_w_arrival_orders            PASS         320.00           0.01      61844.21  **
-                                                        ** axil_crossbar_tests.test_channel_backpressure           PASS        1480.00           0.02      65641.14  **
-                                                        ** axil_crossbar_tests.test_delayed_response_routing       PASS         670.00           0.01      65698.35  **
-                                                        ** axil_crossbar_tests.test_wstrb_partial_and_zero         PASS         690.00           0.01      60345.68  **
-                                                        ** axil_crossbar_tests.test_invalid_address_decerr         PASS         810.00           0.01      61059.11  **
-                                                        ** axil_crossbar_tests.test_reset_idle_and_in_flight       PASS         420.00           0.01      52003.26  **
-                                                        ** axil_crossbar_tests.test_concurrent_read_write          PASS         130.00           0.00      51293.85  **
-                                                        ** axil_crossbar_tests.test_contention_round_robin         PASS         410.00           0.01      54206.81  **
-                                                        ** axil_crossbar_tests.test_randomized_multi_master        PASS        1890.00           0.03      58824.67  **
+                                                        ** axil_crossbar_tests.test_simultaneous_distinct_slaves   PASS         130.00           0.00      33651.51  **
+                                                        ** axil_crossbar_tests.test_simultaneous_same_slave        PASS         150.00           0.00      47647.41  **
+                                                        ** axil_crossbar_tests.test_aw_w_arrival_orders            PASS         320.00           0.01      56232.02  **
+                                                        ** axil_crossbar_tests.test_channel_backpressure           PASS        1480.00           0.03      48060.40  **
+                                                        ** axil_crossbar_tests.test_delayed_response_routing       PASS         670.00           0.01      55488.08  **
+                                                        ** axil_crossbar_tests.test_wstrb_partial_and_zero         PASS         690.00           0.01      49700.03  **
+                                                        ** axil_crossbar_tests.test_invalid_address_decerr         PASS         810.00           0.02      46915.84  **
+                                                        ** axil_crossbar_tests.test_reset_idle_and_in_flight       PASS         420.00           0.01      50467.62  **
+                                                        ** axil_crossbar_tests.test_concurrent_read_write          PASS         130.00           0.00      48423.90  **
+                                                        ** axil_crossbar_tests.test_contention_round_robin         PASS         410.00           0.01      44082.86  **
+                                                        ** axil_crossbar_tests.test_randomized_multi_master        PASS        1890.00           0.04      46235.52  **
                                                         ** axil_crossbar_tests.test_fault_injection_detected       PASS           0.00           0.00          0.00  **
-                                                        ** axil_crossbar_tests.test_deadlock_is_detected           PASS         353.00           0.01      62163.40  **
-                                                        ** axil_crossbar_tests.test_second_aw_held_off             PASS         230.00           0.00      60452.07  **
+                                                        ** axil_crossbar_tests.test_deadlock_is_detected           PASS         353.00           0.01      31398.94  **
+                                                        ** axil_crossbar_tests.test_second_aw_held_off             PASS         230.00           0.00      48645.94  **
                                                         ***************************************************************************************************************
-                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                      7683.01           0.13      58363.10  **
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                      7683.01           0.17      45957.59  **
                                                         ***************************************************************************************************************
 - :0: Verilog $finish

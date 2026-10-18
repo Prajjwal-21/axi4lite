@@ -33,6 +33,10 @@ OUT_DIR="${OUT_DIR:-results/lint}"
 STANDALONE="${STANDALONE:-1}"
 ASSERTIONS="${ASSERTIONS:-1}"
 mkdir -p "$OUT_DIR"
+# The full console transcript lands here so the evidence screenshots
+# (scripts/make_screens.py -> docs/screenshots/02-lint.png) can be regenerated
+# from the recorded run instead of a hand-copied excerpt.
+exec > >(tee "$OUT_DIR/lint_console.log") 2>&1
 
 
 RTL_SRCS=(

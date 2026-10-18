@@ -129,9 +129,9 @@ ax.set_title("AXI4-Lite crossbar - master 0 channels under slave-side backpressu
              "test_channel_backpressure (seed 1)", color="#d5dde6", fontsize=10.5,
              family="monospace", pad=8)
 fig.text(0.008, 0.012,
-         "waveform: tests/dump.vcd (Verilator 5.052 --trace + cocotb 2.1.0, 10 ns clock)"
-         "   |   view interactively: surfer docs/waveforms/crossbar-backpressure-seed1.vcd"
-         "   |   regen: see docs/screenshots/README.md",
+         f"waveform: {VCD} (Verilator 5.052 --trace + cocotb 2.1.0, 10 ns clock)"
+         f"   |   view interactively: surfer {VCD}"
+         f"   |   regen: make waves",
          color="#65788e", fontsize=7.4, family="monospace")
 
 fig.tight_layout(rect=[0, 0.035, 1, 1])

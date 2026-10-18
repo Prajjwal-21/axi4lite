@@ -1,6 +1,6 @@
 # Coverage summary
 
-Generated 2026-10-17 15:21:03 IST by `scripts/coverage.sh` (cocotb regression, seed 1; Verilator `--coverage-line --coverage-toggle`).
+Generated 2026-10-18 13:27:30 IST by `scripts/coverage.sh` (cocotb regression, seed 1; Verilator `--coverage-line --coverage-toggle`).
 
 ## Verification regression
 

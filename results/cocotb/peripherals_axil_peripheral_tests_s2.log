@@ -65,21 +65,21 @@
  14246.01ns INFO     cocotb.regression                  ***************************************************************************************************************************
                                                         ** TEST                                                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         ***************************************************************************************************************************
-                                                        ** axil_peripheral_tests.test_reset_values_and_ids                     PASS         470.00           0.00     172765.03  **
-                                                        ** axil_peripheral_tests.test_ro_wo_and_bad_offsets                    PASS         870.00           0.00     211973.27  **
-                                                        ** axil_peripheral_tests.test_wstrb_zero_and_partial                   PASS         920.00           0.00     228583.30  **
-                                                        ** axil_peripheral_tests.test_zero_strobe_has_no_effect                PASS        1246.00           0.00     264127.65  **
-                                                        ** axil_peripheral_tests.test_aw_w_arrival_orders                      PASS         720.00           0.00     250391.24  **
-                                                        ** axil_peripheral_tests.test_read_before_write_same_cycle             PASS         490.00           0.00     212843.04  **
-                                                        ** axil_peripheral_tests.test_timer_counting_and_period                PASS         530.00           0.00     238278.07  **
-                                                        ** axil_peripheral_tests.test_timer_expiry_flags_oneshot_and_irq       PASS         580.00           0.00     241239.47  **
-                                                        ** axil_peripheral_tests.test_timer_prescaler_and_w1c_race             PASS         990.00           0.00     235501.72  **
-                                                        ** axil_peripheral_tests.test_gpio_sync_latency_and_edges              PASS         630.00           0.00     248483.95  **
-                                                        ** axil_peripheral_tests.test_uart_tx_frame_and_bit_timing             PASS        2220.00           0.01     294418.35  **
-                                                        ** axil_peripheral_tests.test_uart_loopback_roundtrip                  PASS        2100.00           0.01     268117.91  **
-                                                        ** axil_peripheral_tests.test_uart_rx_frame_error_overrun_and_gating   PASS        2310.00           0.01     278934.98  **
-                                                        ** axil_peripheral_tests.test_checker_self_test                        PASS         170.00           0.00     215167.00  **
+                                                        ** axil_peripheral_tests.test_reset_values_and_ids                     PASS         470.00           0.00     174407.84  **
+                                                        ** axil_peripheral_tests.test_ro_wo_and_bad_offsets                    PASS         870.00           0.00     207949.50  **
+                                                        ** axil_peripheral_tests.test_wstrb_zero_and_partial                   PASS         920.00           0.00     234238.25  **
+                                                        ** axil_peripheral_tests.test_zero_strobe_has_no_effect                PASS        1246.00           0.00     270511.84  **
+                                                        ** axil_peripheral_tests.test_aw_w_arrival_orders                      PASS         720.00           0.00     252071.36  **
+                                                        ** axil_peripheral_tests.test_read_before_write_same_cycle             PASS         490.00           0.00     208921.81  **
+                                                        ** axil_peripheral_tests.test_timer_counting_and_period                PASS         530.00           0.00     238497.02  **
+                                                        ** axil_peripheral_tests.test_timer_expiry_flags_oneshot_and_irq       PASS         580.00           0.00     242255.55  **
+                                                        ** axil_peripheral_tests.test_timer_prescaler_and_w1c_race             PASS         990.00           0.00     238690.82  **
+                                                        ** axil_peripheral_tests.test_gpio_sync_latency_and_edges              PASS         630.00           0.00     250409.90  **
+                                                        ** axil_peripheral_tests.test_uart_tx_frame_and_bit_timing             PASS        2220.00           0.01     298011.58  **
+                                                        ** axil_peripheral_tests.test_uart_loopback_roundtrip                  PASS        2100.00           0.01     266245.47  **
+                                                        ** axil_peripheral_tests.test_uart_rx_frame_error_overrun_and_gating   PASS        2310.00           0.01     279322.85  **
+                                                        ** axil_peripheral_tests.test_checker_self_test                        PASS         170.00           0.00     209930.45  **
                                                         ***************************************************************************************************************************
-                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                                 14246.01           0.06     242519.73  **
+                                                        ** TESTS=14 PASS=14 FAIL=0 SKIP=0                                                 14246.01           0.06     243782.91  **
                                                         ***************************************************************************************************************************
 - :0: Verilog $finish

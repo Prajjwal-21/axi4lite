@@ -1,25 +1,25 @@
-SBY 14:21:39 [formal/completion] engine_0: ##   0:14:35  Checking assumptions in step 19..
-SBY 14:21:41 [formal/completion] engine_0: ##   0:14:37  Checking assertions in step 19..
-SBY 14:22:41 [formal/completion] engine_0: ##   0:15:37  waiting for solver (1 minute)
-SBY 14:24:48 [formal/completion] engine_0: ##   0:17:44  Checking assumptions in step 20..
-SBY 14:24:50 [formal/completion] engine_0: ##   0:17:46  Checking assertions in step 20..
-SBY 14:25:50 [formal/completion] engine_0: ##   0:18:46  waiting for solver (1 minute)
-SBY 14:35:31 [formal/completion] engine_0: ##   0:28:27  Checking assumptions in step 21..
-SBY 14:35:32 [formal/completion] engine_0: ##   0:28:28  Checking assertions in step 21..
-SBY 14:56:59 [formal/completion] engine_0: ##   0:49:55  waiting for solver (1 minute)
-SBY 15:00:02 [formal/completion] engine_0: ##   0:52:58  Checking assumptions in step 22..
-SBY 15:00:03 [formal/completion] engine_0: ##   0:52:59  Checking assertions in step 22..
-SBY 15:01:03 [formal/completion] engine_0: ##   0:53:59  waiting for solver (1 minute)
-SBY 15:05:03 [formal/completion] engine_0: ##   0:57:59  waiting for solver (5 minutes)
-SBY 15:07:00 [formal/completion] engine_0: ##   0:59:57  Checking assumptions in step 23..
-SBY 15:07:02 [formal/completion] engine_0: ##   0:59:58  Checking assertions in step 23..
-SBY 15:08:02 [formal/completion] engine_0: ##   1:00:58  waiting for solver (1 minute)
-SBY 15:12:02 [formal/completion] engine_0: ##   1:04:58  waiting for solver (5 minutes)
-SBY 15:15:33 [formal/completion] engine_0: ##   1:08:29  Status: passed
-SBY 15:15:33 [formal/completion] engine_0: finished (returncode=0)
-SBY 15:15:33 [formal/completion] engine_0: Status returned by engine: pass
-SBY 15:15:33 [formal/completion] summary: Elapsed clock time [H:MM:SS (secs)]: 0:41:27 (2487)
-SBY 15:15:33 [formal/completion] summary: Elapsed process time [H:MM:SS (secs)]: 0:41:09 (2469)
-SBY 15:15:33 [formal/completion] summary: engine_0 (smtbmc z3) returned pass
-SBY 15:15:33 [formal/completion] summary: engine_0 did not produce any traces
-SBY 15:15:33 [formal/completion] DONE (PASS, rc=0)
+SBY 13:46:33 [formal/completion] engine_0: ##   0:16:04  waiting for solver (1 minute)
+SBY 13:50:17 [formal/completion] engine_0: ##   0:19:48  Checking assumptions in step 20..
+SBY 13:50:19 [formal/completion] engine_0: ##   0:19:50  Checking assertions in step 20..
+SBY 13:51:19 [formal/completion] engine_0: ##   0:20:50  waiting for solver (1 minute)
+SBY 13:55:19 [formal/completion] engine_0: ##   0:24:50  waiting for solver (5 minutes)
+SBY 13:56:02 [formal/completion] engine_0: ##   0:25:33  Checking assumptions in step 21..
+SBY 13:56:07 [formal/completion] engine_0: ##   0:25:37  Checking assertions in step 21..
+SBY 13:57:07 [formal/completion] engine_0: ##   0:26:37  waiting for solver (1 minute)
+SBY 14:01:07 [formal/completion] engine_0: ##   0:30:37  waiting for solver (5 minutes)
+SBY 14:01:36 [formal/completion] engine_0: ##   0:31:06  Checking assumptions in step 22..
+SBY 14:01:37 [formal/completion] engine_0: ##   0:31:08  Checking assertions in step 22..
+SBY 14:02:37 [formal/completion] engine_0: ##   0:32:08  waiting for solver (1 minute)
+SBY 14:06:37 [formal/completion] engine_0: ##   0:36:08  waiting for solver (5 minutes)
+SBY 14:07:57 [formal/completion] engine_0: ##   0:37:27  Checking assumptions in step 23..
+SBY 14:07:59 [formal/completion] engine_0: ##   0:37:30  Checking assertions in step 23..
+SBY 14:08:59 [formal/completion] engine_0: ##   0:38:30  waiting for solver (1 minute)
+SBY 14:12:59 [formal/completion] engine_0: ##   0:42:30  waiting for solver (5 minutes)
+SBY 14:16:24 [formal/completion] engine_0: ##   0:45:55  Status: passed
+SBY 14:16:24 [formal/completion] engine_0: finished (returncode=0)
+SBY 14:16:24 [formal/completion] engine_0: Status returned by engine: pass
+SBY 14:16:24 [formal/completion] summary: Elapsed clock time [H:MM:SS (secs)]: 0:45:56 (2756)
+SBY 14:16:24 [formal/completion] summary: Elapsed process time [H:MM:SS (secs)]: 0:45:45 (2745)
+SBY 14:16:24 [formal/completion] summary: engine_0 (smtbmc z3) returned pass
+SBY 14:16:24 [formal/completion] summary: engine_0 did not produce any traces
+SBY 14:16:24 [formal/completion] DONE (PASS, rc=0)

@@ -21,37 +21,37 @@
     {
       "name": "test_aw_w_arrival_orders",
       "status": "PASS",
-      "time_s": 0.006,
+      "time_s": 0.005,
       "messages": []
     },
     {
       "name": "test_channel_backpressure",
       "status": "PASS",
-      "time_s": 0.025,
+      "time_s": 0.023,
       "messages": []
     },
     {
       "name": "test_delayed_response_routing",
       "status": "PASS",
-      "time_s": 0.014,
+      "time_s": 0.011,
       "messages": []
     },
     {
       "name": "test_wstrb_partial_and_zero",
       "status": "PASS",
-      "time_s": 0.014,
+      "time_s": 0.012,
       "messages": []
     },
     {
       "name": "test_invalid_address_decerr",
       "status": "PASS",
-      "time_s": 0.016,
+      "time_s": 0.014,
       "messages": []
     },
     {
       "name": "test_reset_idle_and_in_flight",
       "status": "PASS",
-      "time_s": 0.009,
+      "time_s": 0.008,
       "messages": []
     },
     {
@@ -63,13 +63,13 @@
     {
       "name": "test_contention_round_robin",
       "status": "PASS",
-      "time_s": 0.009,
+      "time_s": 0.008,
       "messages": []
     },
     {
       "name": "test_randomized_multi_master",
       "status": "PASS",
-      "time_s": 0.041,
+      "time_s": 0.038,
       "messages": []
     },
     {

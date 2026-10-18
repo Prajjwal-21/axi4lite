@@ -15,7 +15,7 @@
     {
       "name": "test_address_map_and_responses",
       "status": "PASS",
-      "time_s": 0.018,
+      "time_s": 0.022,
       "messages": []
     },
     {
@@ -45,7 +45,7 @@
     {
       "name": "test_randomized_register_traffic",
       "status": "PASS",
-      "time_s": 0.018,
+      "time_s": 0.02,
       "messages": []
     }
   ]

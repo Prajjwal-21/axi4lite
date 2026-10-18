@@ -19,10 +19,10 @@
    216.00ns INFO     cocotb.regression                  **************************************************************************************************
                                                         ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         **************************************************************************************************
-                                                        ** axil_env_tests.test_timing_convention      PASS          50.00           0.00     122311.89  **
-                                                        ** axil_env_tests.test_cycle_counting         PASS         120.00           0.00     410198.91  **
-                                                        ** axil_env_tests.test_reset_holds_register   PASS          46.00           0.00     400146.15  **
+                                                        ** axil_env_tests.test_timing_convention      PASS          50.00           0.00     140466.01  **
+                                                        ** axil_env_tests.test_cycle_counting         PASS         120.00           0.00     415644.87  **
+                                                        ** axil_env_tests.test_reset_holds_register   PASS          46.00           0.00     332228.30  **
                                                         **************************************************************************************************
-                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                            216.00           0.00     137013.64  **
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                            216.00           0.00     144838.21  **
                                                         **************************************************************************************************
 - :0: Verilog $finish

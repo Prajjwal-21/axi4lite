@@ -38,9 +38,10 @@ argument, and small is what makes the argument airtight.
 | Reference model + scoreboard | Python register model + transaction matching, independent of the BFMs | all 3 peripherals |
 | Functional coverage | declared bins, hit only by monitored boundary traffic | report in `results/coverage/` |
 | Structural coverage | Verilator 5.052 line/toggle/branch, merged | report in `results/coverage/` |
-| Formal | `formal/*.sby`: decode (**unbounded**), routing (**unbounded**, free masters/slaves), reset (BMC 16), completion (BMC 24), progress (BMC 64 liveness) | 5 jobs |
+| Formal | `formal/*.sby`: decode (**unbounded**), routing (**unbounded**, free masters/slaves), reset (BMC 16), completion (BMC 24), progress (**unbounded** PDR liveness) | 5 jobs |
 | Mutation testing | `scripts/mutation_test.py`: 9 injected defects, regression **plus** unbounded routing proof per mutant | `results/mutation/summary.md` |
 | Synthesis | Yosys generic mapping + cell/flop statistics | `results/synth/` |
+| Evidence gallery | one waveform figure per required scenario (VCD + PNG) + terminal excerpts of every layer | `docs/screenshots/`, `docs/waveforms/` |
 
 ## The findings (why the layers matter)
 
@@ -77,8 +78,10 @@ rtl/            synthesizable SystemVerilog (+ axil_defs.svh: single source of t
 tb/             cocotb agents/models/monitors/scoreboard/coverage + SV harnesses + the checker
 tests/          the regression (4 test modules)
 formal/         5 SymbiYosys jobs + their harnesses
-scripts/        lint.sh, run_tests.py, coverage.sh, mutation_test.py, synth.ys
-docs/           architecture, register map, protocol contract, verification plan, results
+scripts/        lint.sh, run_tests.py, coverage.sh, mutation_test.py, synth.ys,
+                capture_waves.py + render_wave.py (waveform evidence), make_screens.py
+docs/           architecture, register map, protocol contract, verification plan, results,
+                screenshots/ (the evidence gallery), waveforms/ (committed VCD traces)
 results/        recorded evidence (logs, xUnit, coverage, mutation report, tool versions)
 .github/workflows/ci.yml
 ```
@@ -96,10 +99,12 @@ make lint          # 28 Verilator configurations, RTL + TB, both assertion modes
 make test          # full regression, seed 1
 make regress       # seeds 1,2,3,7 (152 tests)
 make coverage      # functional + structural coverage -> results/coverage/summary.md
-make formal        # decode + reset + routing (unbounded)          [fast]
-make formal-deep   # progress (BMC 64) + completion (BMC 24)       [slow]
+make formal        # decode + reset + routing/progress (unbounded)   [fast]
+make formal-deep   # completion (BMC 24)                             [slow]
 make mutation      # 9 mutants, sim verdict + routing proof each
 make synth         # generic synthesis + stats
+make waves         # per-scenario waveform evidence: VCD + PNG (docs/screenshots 08-18)
+make screens       # terminal-style evidence screenshots 01-07 from the recorded results
 ```
 
 Everything lands under `results/`; `make clean` removes only regenerable,

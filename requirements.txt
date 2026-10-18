@@ -1,6 +1,13 @@
 # Python side of the verification environment.
 #
-# Only the cocotb testbench framework is needed; everything else (Verilator,
-# Yosys, SymbiYosys, Icarus) is a system tool - see docs/results.md for the
-# versions this project's evidence was produced with.
+# cocotb drives the regression; everything else (Verilator, Yosys,
+# SymbiYosys, Icarus) is a system tool - see docs/results.md for the versions
+# this project's evidence was produced with.
+#
+# The two render libraries below are only used by the evidence-gallery
+# generators (make waves / make screens -> scripts/capture_waves.py,
+# render_wave.py, plot_waveform.py, make_screens.py); the regression, lint,
+# coverage, formal, mutation and synthesis flows need cocotb alone.
 cocotb==2.1.0
+matplotlib>=3.8
+pillow>=10.0

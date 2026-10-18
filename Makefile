@@ -10,8 +10,8 @@
 #   make venv            create .venv and install cocotb (once)
 #   make lint test       the fast everyday loop
 #   make regress         cocotb regression across SEEDS (default 1,2,3,7)
-#   make formal          fast formal jobs (includes the UNBOUNDED routing proof)
-#   make formal-deep     the long BMC jobs (completion, progress)
+#   make formal          fast formal jobs (routing + progress are UNBOUNDED proofs)
+#   make formal-deep     the long BMC job (completion, ~46 min)
 #   make coverage        functional + Verilator line/toggle coverage
 #   make mutation        mutation testing (simulation + formal cross-check)
 #   make synth           generic-technology synthesis + stat
@@ -25,11 +25,11 @@ ROOT := $(patsubst %/,%,$(dir $(realpath $(firstword $(MAKEFILE_LIST)))))
 PY   ?= $(ROOT)/.venv/bin/python
 
 SEEDS       ?= 1,2,3,7
-FORMAL_FAST ?= routing decode reset
-FORMAL_DEEP ?= progress completion
+FORMAL_FAST ?= routing decode progress reset
+FORMAL_DEEP ?= completion
 
 .PHONY: help venv lint test regress coverage formal formal-fast formal-deep \
-        formal-all mutation synth clean
+        formal-all mutation synth waves screens clean
 
 help:  ## list the targets
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  make %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -53,11 +53,11 @@ coverage:  ## functional coverage + Verilator line/toggle coverage
 
 formal: formal-fast
 
-formal-fast:  ## fast formal jobs; routing is an UNBOUNDED k-induction proof
+formal-fast:  ## fast formal jobs; routing (k-induction) + progress (PDR) are UNBOUNDED proofs
 	cd $(ROOT) && for job in $(FORMAL_FAST); do \
 		echo "== sby $$job"; sby -f formal/$$job.sby || exit 1; done
 
-formal-deep:  ## long bounded-model-checking jobs (depth 24 / depth 64)
+formal-deep:  ## long bounded-model-checking job (completion, BMC 24, ~46 min)
 	cd $(ROOT) && for job in $(FORMAL_DEEP); do \
 		echo "== sby $$job"; sby -f formal/$$job.sby || exit 1; done
 
@@ -65,6 +65,12 @@ formal-all: formal-fast formal-deep  ## every formal job (can take hours)
 
 mutation:  ## mutation testing incl. formal cross-check -> results/mutation/
 	cd $(ROOT) && $(PY) scripts/mutation_test.py --formal
+
+waves:  ## per-scenario waveform evidence: VCD + PNG -> docs/waveforms, docs/screenshots
+	cd $(ROOT) && $(PY) scripts/capture_waves.py
+
+screens:  ## render the terminal-style evidence screenshots -> docs/screenshots
+	cd $(ROOT) && $(PY) scripts/make_screens.py
 
 synth:  ## generic-technology synthesis + stat -> results/synth/
 	cd $(ROOT) && mkdir -p results/synth && \

@@ -3,88 +3,88 @@
   "nmst": 2,
   "nslv": 3,
   "bins_total": 84,
-  "bins_hit": 35,
-  "percent": 41.7,
+  "bins_hit": 55,
+  "percent": 65.5,
   "points": [
     {
       "coverpoint": "slave0_activity",
       "bin": "ar",
-      "count": 1
+      "count": 7
     },
     {
       "coverpoint": "slave0_activity",
       "bin": "aw",
-      "count": 3
+      "count": 23
     },
     {
       "coverpoint": "slave0_activity",
       "bin": "b",
-      "count": 3
+      "count": 22
     },
     {
       "coverpoint": "slave0_activity",
       "bin": "r",
-      "count": 1
+      "count": 7
     },
     {
       "coverpoint": "slave0_activity",
       "bin": "w",
-      "count": 3
+      "count": 23
     },
     {
       "coverpoint": "slave1_activity",
       "bin": "ar",
-      "count": 1
+      "count": 11
     },
     {
       "coverpoint": "slave1_activity",
       "bin": "aw",
-      "count": 3
+      "count": 18
     },
     {
       "coverpoint": "slave1_activity",
       "bin": "b",
-      "count": 3
+      "count": 18
     },
     {
       "coverpoint": "slave1_activity",
       "bin": "r",
-      "count": 1
+      "count": 11
     },
     {
       "coverpoint": "slave1_activity",
       "bin": "w",
-      "count": 3
+      "count": 18
     },
     {
       "coverpoint": "slave2_activity",
       "bin": "ar",
-      "count": 1
+      "count": 16
     },
     {
       "coverpoint": "slave2_activity",
       "bin": "aw",
-      "count": 3
+      "count": 35
     },
     {
       "coverpoint": "slave2_activity",
       "bin": "b",
-      "count": 3
+      "count": 35
     },
     {
       "coverpoint": "slave2_activity",
       "bin": "r",
-      "count": 1
+      "count": 16
     },
     {
       "coverpoint": "slave2_activity",
       "bin": "w",
-      "count": 3
+      "count": 35
     },
     {
       "coverpoint": "xbar.ar_backpressure",
       "bin": "0",
-      "count": 3
+      "count": 38
     },
     {
       "coverpoint": "xbar.ar_backpressure",
@@ -109,7 +109,7 @@
     {
       "coverpoint": "xbar.aw_backpressure",
       "bin": "0",
-      "count": 9
+      "count": 88
     },
     {
       "coverpoint": "xbar.aw_backpressure",
@@ -129,12 +129,12 @@
     {
       "coverpoint": "xbar.aw_backpressure",
       "bin": "5-16",
-      "count": 0
+      "count": 1
     },
     {
       "coverpoint": "xbar.b_backpressure",
       "bin": "0",
-      "count": 9
+      "count": 87
     },
     {
       "coverpoint": "xbar.b_backpressure",
@@ -159,7 +159,7 @@
     {
       "coverpoint": "xbar.r_backpressure",
       "bin": "0",
-      "count": 3
+      "count": 38
     },
     {
       "coverpoint": "xbar.r_backpressure",
@@ -184,22 +184,22 @@
     {
       "coverpoint": "xbar.read_concurrency",
       "bin": "0",
-      "count": 403
+      "count": 1918
     },
     {
       "coverpoint": "xbar.read_concurrency",
       "bin": "1",
-      "count": 90
+      "count": 537
     },
     {
       "coverpoint": "xbar.read_concurrency",
       "bin": "2",
-      "count": 0
+      "count": 33
     },
     {
       "coverpoint": "xbar.read_concurrency",
       "bin": "2_same_target",
-      "count": 0
+      "count": 69
     },
     {
       "coverpoint": "xbar.read_resp",
@@ -209,7 +209,7 @@
     {
       "coverpoint": "xbar.read_resp",
       "bin": "m0_OKAY",
-      "count": 1
+      "count": 20
     },
     {
       "coverpoint": "xbar.read_resp",
@@ -219,12 +219,12 @@
     {
       "coverpoint": "xbar.read_resp",
       "bin": "m1_DECERR",
-      "count": 0
+      "count": 4
     },
     {
       "coverpoint": "xbar.read_resp",
       "bin": "m1_OKAY",
-      "count": 2
+      "count": 14
     },
     {
       "coverpoint": "xbar.read_resp",
@@ -239,42 +239,42 @@
     {
       "coverpoint": "xbar.read_target",
       "bin": "m0_s0",
-      "count": 0
+      "count": 3
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m0_s1",
-      "count": 1
+      "count": 7
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m0_s2",
-      "count": 0
+      "count": 10
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m1_err",
-      "count": 0
+      "count": 4
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m1_s0",
-      "count": 1
+      "count": 4
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m1_s1",
-      "count": 0
+      "count": 4
     },
     {
       "coverpoint": "xbar.read_target",
       "bin": "m1_s2",
-      "count": 1
+      "count": 6
     },
     {
       "coverpoint": "xbar.w_backpressure",
       "bin": "0",
-      "count": 9
+      "count": 89
     },
     {
       "coverpoint": "xbar.w_backpressure",
@@ -309,32 +309,32 @@
     {
       "coverpoint": "xbar.write_concurrency",
       "bin": "0",
-      "count": 196
+      "count": 1106
     },
     {
       "coverpoint": "xbar.write_concurrency",
       "bin": "1",
-      "count": 297
+      "count": 1242
     },
     {
       "coverpoint": "xbar.write_concurrency",
       "bin": "2",
-      "count": 0
+      "count": 76
     },
     {
       "coverpoint": "xbar.write_concurrency",
       "bin": "2_same_target",
-      "count": 0
+      "count": 133
     },
     {
       "coverpoint": "xbar.write_resp",
       "bin": "m0_DECERR",
-      "count": 0
+      "count": 12
     },
     {
       "coverpoint": "xbar.write_resp",
       "bin": "m0_OKAY",
-      "count": 6
+      "count": 47
     },
     {
       "coverpoint": "xbar.write_resp",
@@ -349,7 +349,7 @@
     {
       "coverpoint": "xbar.write_resp",
       "bin": "m1_OKAY",
-      "count": 3
+      "count": 28
     },
     {
       "coverpoint": "xbar.write_resp",
@@ -359,22 +359,22 @@
     {
       "coverpoint": "xbar.write_target",
       "bin": "m0_err",
-      "count": 0
+      "count": 12
     },
     {
       "coverpoint": "xbar.write_target",
       "bin": "m0_s0",
-      "count": 3
+      "count": 18
     },
     {
       "coverpoint": "xbar.write_target",
       "bin": "m0_s1",
-      "count": 0
+      "count": 7
     },
     {
       "coverpoint": "xbar.write_target",
       "bin": "m0_s2",
-      "count": 3
+      "count": 24
     },
     {
       "coverpoint": "xbar.write_target",
@@ -384,47 +384,47 @@
     {
       "coverpoint": "xbar.write_target",
       "bin": "m1_s0",
-      "count": 0
+      "count": 6
     },
     {
       "coverpoint": "xbar.write_target",
       "bin": "m1_s1",
-      "count": 3
+      "count": 11
     },
     {
       "coverpoint": "xbar.write_target",
       "bin": "m1_s2",
-      "count": 0
+      "count": 11
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "all_bytes",
-      "count": 9
+      "count": 66
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "partial",
-      "count": 0
+      "count": 11
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "single_b0",
-      "count": 0
+      "count": 2
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "single_b1",
-      "count": 0
+      "count": 2
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "single_b2",
-      "count": 0
+      "count": 4
     },
     {
       "coverpoint": "xbar.wstrb",
       "bin": "single_b3",
-      "count": 0
+      "count": 4
     }
   ]
 }

@@ -27,7 +27,7 @@
     {
       "name": "test_zero_strobe_has_no_effect",
       "status": "PASS",
-      "time_s": 0.004,
+      "time_s": 0.005,
       "messages": []
     },
     {
@@ -63,25 +63,25 @@
     {
       "name": "test_gpio_sync_latency_and_edges",
       "status": "PASS",
-      "time_s": 0.002,
+      "time_s": 0.003,
       "messages": []
     },
     {
       "name": "test_uart_tx_frame_and_bit_timing",
       "status": "PASS",
-      "time_s": 0.007,
+      "time_s": 0.019,
       "messages": []
     },
     {
       "name": "test_uart_loopback_roundtrip",
       "status": "PASS",
-      "time_s": 0.007,
+      "time_s": 0.037,
       "messages": []
     },
     {
       "name": "test_uart_rx_frame_error_overrun_and_gating",
       "status": "PASS",
-      "time_s": 0.008,
+      "time_s": 0.016,
       "messages": []
     },
     {

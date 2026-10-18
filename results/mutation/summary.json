@@ -6,7 +6,7 @@
     "subsystem"
   ],
   "python": "/Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python",
-  "elapsed_s": 150.3,
+  "elapsed_s": 107.8,
   "baseline_ok": true,
   "mutants": [
     {
@@ -18,14 +18,14 @@
       "evidence": "",
       "failing": [],
       "rc": 0,
-      "seconds": 11.9,
+      "seconds": 9.2,
       "diff": "# M0-baseline: no edit (baseline control)\n",
       "formal": {
         "status": "PASS",
         "kind": "mutant not distinguished by the unbounded routing invariants",
         "evidence": "",
         "rc": 0,
-        "seconds": 12.3,
+        "seconds": 9.4,
         "log": "results/mutation/work/M0-baseline/run_routing.log"
       }
     },
@@ -45,14 +45,14 @@
         "test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl"
       ],
       "rc": 1,
-      "seconds": 4.7,
+      "seconds": 3.1,
       "diff": "--- a/rtl/axi_lite_master_port.sv\n+++ b/rtl/axi_lite_master_port.sv\n@@ -256,7 +256,7 @@\n     // was found by formal/routing.sby (assertion ap_one_outstanding in the\n     // harness); the window is closed here and the property is what keeps it\n     // closed.\n-    assign wr_start = aw_done | w_done;\n+    assign wr_start = aw_done & w_done;\n \n     // -----------------------------------------------------------------------\n     // Write path sequential\n",
       "formal": {
         "status": "PASS",
         "kind": "mutant not distinguished by the unbounded routing invariants",
         "evidence": "",
         "rc": 0,
-        "seconds": 15.9,
+        "seconds": 11.8,
         "log": "results/mutation/work/M1-write-slot-hole/run_routing.log"
       }
     },
@@ -65,14 +65,14 @@
       "evidence": "",
       "failing": [],
       "rc": 0,
-      "seconds": 12.7,
+      "seconds": 8.3,
       "diff": "--- a/rtl/axi_lite_master_port.sv\n+++ b/rtl/axi_lite_master_port.sv\n@@ -236,7 +236,7 @@\n     // trace (an early RVALID cleared rd_active_q, a second AR was accepted, and\n     // the shared ar_pend_q then dropped it); the mask makes the port immune to\n     // it, so the routing proof needs no assumption about target response timing.\n-    assign w_rsp_en = wr_wait_q & ~aw_pend_q & ~w_pend_q;\n+    assign w_rsp_en = wr_wait_q;\n     assign r_rsp_en = rd_active_q & ~ar_pend_q;\n \n     assign b_hs = w_rsp_en & w_bvalid_i & bready_i;\n",
       "formal": {
         "status": "FAIL",
         "kind": "refuted by routing.sby",
-        "evidence": "SBY 15:12:29 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2-rsp-mask-off/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[0].u_mport.ap_b_rsp_needs_full_dispatch",
+        "evidence": "SBY 13:28:56 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2-rsp-mask-off/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[0].u_mport.ap_b_rsp_needs_full_dispatch",
         "rc": 2,
-        "seconds": 1.8,
+        "seconds": 1.3,
         "log": "results/mutation/work/M2-rsp-mask-off/run_routing.log"
       }
     },
@@ -85,14 +85,14 @@
       "evidence": "",
       "failing": [],
       "rc": 0,
-      "seconds": 13.6,
+      "seconds": 9.0,
       "diff": "--- a/rtl/axi_lite_master_port.sv\n+++ b/rtl/axi_lite_master_port.sv\n@@ -237,7 +237,7 @@\n     // the shared ar_pend_q then dropped it); the mask makes the port immune to\n     // it, so the routing proof needs no assumption about target response timing.\n     assign w_rsp_en = wr_wait_q & ~aw_pend_q & ~w_pend_q;\n-    assign r_rsp_en = rd_active_q & ~ar_pend_q;\n+    assign r_rsp_en = rd_active_q;\n \n     assign b_hs = w_rsp_en & w_bvalid_i & bready_i;\n     assign r_hs = r_rsp_en & r_rvalid_i & rready_i;\n",
       "formal": {
         "status": "FAIL",
         "kind": "refuted by routing.sby",
-        "evidence": "SBY 15:12:44 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2b-rsp-mask-off-read/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[1].u_mport.ap_r_rsp_needs_dispatch",
+        "evidence": "SBY 13:29:06 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2b-rsp-mask-off-read/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[1].u_mport.ap_r_rsp_needs_dispatch",
         "rc": 2,
-        "seconds": 1.4,
+        "seconds": 0.9,
         "log": "results/mutation/work/M2b-rsp-mask-off-read/run_routing.log"
       }
     },
@@ -102,22 +102,22 @@
       "file": "axi_lite_master_port.sv",
       "status": "DETECTED",
       "kind": "failing test(s)",
-      "evidence": "test_wstrb_partial_and_zero: READ m0 @0x00008004 data=0xaa000000 resp=OKAY : expected read data 0xffffff00, got 0xaa000000; test_randomized_multi_master: write transactions delivered to the slaves do not match the writes issued: missing={(32, 2768240687, 12): 1, (16420, 2768240688, 7): 1, (32804, 2768240693, 8): 1, (40, 2768240694, 0): 1, (32, 2768240695, 14): 1, (44, 2768240697, 4): 1, (164; test_two_masters_concurrent_access: assert 2863267840 == 2863285316; test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x10ae7d6a0>.get",
+      "evidence": "test_wstrb_partial_and_zero: READ m0 @0x00008004 data=0xaa000000 resp=OKAY : expected read data 0xffffff00, got 0xaa000000; test_randomized_multi_master: write transactions delivered to the slaves do not match the writes issued: missing={(32, 2768240687, 12): 1, (16420, 2768240688, 7): 1, (32804, 2768240693, 8): 1, (40, 2768240694, 0): 1, (32, 2768240695, 14): 1, (44, 2768240697, 4): 1, (164; test_two_masters_concurrent_access: assert 2863267840 == 2863285316; test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x1093156a0>.get",
       "failing": [
         "test_wstrb_partial_and_zero: READ m0 @0x00008004 data=0xaa000000 resp=OKAY : expected read data 0xffffff00, got 0xaa000000",
         "test_randomized_multi_master: write transactions delivered to the slaves do not match the writes issued: missing={(32, 2768240687, 12): 1, (16420, 2768240688, 7): 1, (32804, 2768240693, 8): 1, (40, 2768240694, 0): 1, (32, 2768240695, 14): 1, (44, 2768240697, 4): 1, (164",
         "test_two_masters_concurrent_access: assert 2863267840 == 2863285316",
-        "test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x10ae7d6a0>.get"
+        "test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x1093156a0>.get"
       ],
       "rc": 1,
-      "seconds": 12.6,
+      "seconds": 8.5,
       "diff": "--- a/rtl/axi_lite_master_port.sv\n+++ b/rtl/axi_lite_master_port.sv\n@@ -287,7 +287,7 @@\n             if (w_accept) begin\n                 w_pend_q <= 1'b1;\n                 w_data_q <= wdata_i;\n-                w_strb_q <= wstrb_i;\n+                w_strb_q <= {DATA_WIDTH/8{1'b1}};\n             end else if (w_done) begin\n                 w_pend_q <= 1'b0;\n             end\n",
       "formal": {
         "status": "PASS",
         "kind": "mutant not distinguished by the unbounded routing invariants",
         "evidence": "",
         "rc": 0,
-        "seconds": 10.7,
+        "seconds": 7.4,
         "log": "results/mutation/work/M3-wstrb-drop/run_routing.log"
       }
     },
@@ -145,14 +145,14 @@
         "test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl"
       ],
       "rc": 1,
-      "seconds": 3.9,
+      "seconds": 3.5,
       "diff": "--- a/rtl/axi_lite_address_decoder.sv\n+++ b/rtl/axi_lite_address_decoder.sv\n@@ -38,7 +38,7 @@\n     always_comb begin\n         sel = {(NSLV_REAL + 1) {1'b0}};\n \n-        for (int unsigned i = 0; i < NSLV_REAL; i++) begin\n+        for (int unsigned i = 0; i < NSLV_REAL - 1; i++) begin\n             if (addr[ADDR_WIDTH-1:REGION_LSB] ==\n                 BASE_FLAT[i*ADDR_WIDTH + REGION_LSB +: CMP_W]) begin\n                 sel[i] = 1'b1;\n",
       "formal": {
         "status": "FAIL",
         "kind": "refuted by routing.sby",
-        "evidence": "SBY 15:13:13 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M4-decode-drop-last/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_r_err_addr_unmapped",
+        "evidence": "SBY 13:29:26 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M4-decode-drop-last/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_r_err_addr_unmapped",
         "rc": 2,
-        "seconds": 1.0,
+        "seconds": 0.8,
         "log": "results/mutation/work/M4-decode-drop-last/run_routing.log"
       }
     },
@@ -174,14 +174,14 @@
         "test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl"
       ],
       "rc": 1,
-      "seconds": 4.4,
+      "seconds": 2.9,
       "diff": "--- a/rtl/axil_error_slave.sv\n+++ b/rtl/axil_error_slave.sv\n@@ -67,7 +67,7 @@\n     assign awready = ~rst & ~aw_seen_q & ~b_pend_q;\n     assign wready  = ~rst & ~w_seen_q  & ~b_pend_q;\n     assign bvalid  = b_pend_q;\n-    assign bresp   = `AXIL_RESP_DECERR;\n+    assign bresp   = `AXIL_RESP_OKAY;\n \n     assign arready = ~rst & ~r_pend_q;\n     assign rvalid  = r_pend_q;\n",
       "formal": {
         "status": "FAIL",
         "kind": "refuted by routing.sby",
-        "evidence": "SBY 15:13:19 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M5-bresp-okay/routing] engine_0.induction: ## 0:00:01 Assert failed in axil_crossbar_harness: u_dut.u_error_slave.ap_bresp_is_decerr",
+        "evidence": "SBY 13:29:31 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M5-bresp-okay/routing] engine_0.induction: ## 0:00:01 Assert failed in axil_crossbar_harness: u_dut.u_error_slave.ap_bresp_is_decerr",
         "rc": 2,
-        "seconds": 2.5,
+        "seconds": 2.0,
         "log": "results/mutation/work/M5-bresp-okay/run_routing.log"
       }
     },
@@ -194,14 +194,14 @@
       "evidence": "",
       "failing": [],
       "rc": 0,
-      "seconds": 12.0,
+      "seconds": 8.5,
       "diff": "--- a/rtl/axi_lite_arbiter.sv\n+++ b/rtl/axi_lite_arbiter.sv\n@@ -65,7 +65,7 @@\n         nxt_idx = ptr;\n         for (int unsigned i = 0; i < N; i++) begin\n             if (rr_gnt[i]) begin\n-                nxt_idx = (i == (N - 1)) ? {PTRW{1'b0}} : PTRW'(i + 1);\n+                nxt_idx = ptr;\n             end\n         end\n     end\n",
       "formal": {
         "status": "PASS",
         "kind": "mutant not distinguished by the unbounded routing invariants",
         "evidence": "",
         "rc": 0,
-        "seconds": 11.7,
+        "seconds": 8.6,
         "log": "results/mutation/work/M6-rr-ptr-frozen/run_routing.log"
       }
     },
@@ -228,14 +228,14 @@
         "test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl"
       ],
       "rc": 1,
-      "seconds": 4.1,
+      "seconds": 2.9,
       "diff": "--- a/rtl/axi_lite_arbiter.sv\n+++ b/rtl/axi_lite_arbiter.sv\n@@ -79,7 +79,7 @@\n         if (rst) begin\n             gnt_q <= {N{1'b0}};\n             ptr   <= {PTRW{1'b0}};\n-        end else if (done || (|gnt_q == 1'b0)) begin\n+        end else if (1'b1) begin\n             gnt_q <= rr_gnt;\n             if (|rr_gnt) begin\n                 ptr <= nxt_idx;\n",
       "formal": {
         "status": "PASS",
         "kind": "mutant not distinguished by the unbounded routing invariants",
         "evidence": "",
         "rc": 0,
-        "seconds": 7.8,
+        "seconds": 5.9,
         "log": "results/mutation/work/M7-gnt-hold-off/run_routing.log"
       }
     },
@@ -263,14 +263,14 @@
         "test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl"
       ],
       "rc": 1,
-      "seconds": 3.9,
+      "seconds": 2.8,
       "diff": "--- a/rtl/axi_lite_slave_port.sv\n+++ b/rtl/axi_lite_slave_port.sv\n@@ -170,7 +170,7 @@\n \n         for (int unsigned m = 0; m < NMST; m++) begin\n             if (w_gnt_w[m]) begin\n-                awaddr_o = w_addr_i[m];\n+                awaddr_o = w_addr_i[(m + 1) % NMST];\n                 awprot_o = w_prot_i[m];\n                 wdata_o  = w_data_i[m];\n                 wstrb_o  = w_strb_i[m];\n",
       "formal": {
         "status": "FAIL",
         "kind": "refuted by routing.sby",
-        "evidence": "SBY 15:14:00 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M8-awaddr-swap/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_payload_from_owner",
+        "evidence": "SBY 13:30:01 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M8-awaddr-swap/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_payload_from_owner",
         "rc": 2,
-        "seconds": 1.1,
+        "seconds": 0.9,
         "log": "results/mutation/work/M8-awaddr-swap/run_routing.log"
       }
     }

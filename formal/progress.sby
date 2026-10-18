@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # formal/progress.sby -- progress (liveness) and response-code routing.
 #
-# WHAT IS PROVEN (BOUNDED, mode bmc: no counterexample within the depth below)
+# WHAT IS PROVEN (UNBOUNDED, mode prove + abc pdr)
 #   P1/P2  a scripted master's write and read always complete within their
 #          channel deadlines (AW_LIMIT/R_LIMIT/TX_LIMIT, 16/16/32 cycles) -
 #          the paths cannot deadlock.
@@ -12,14 +12,20 @@
 #          reads SLVERR, unmapped reads DECERR with RDATA = 0.
 #   P5     all four streams run concurrently, and rst is free in any cycle.
 #
-# WHY BMC AND NOT INDUCTION
+# WHY PDR AND NOT K-INDUCTION / BMC
 #   Deadline properties are statements about a *window* (a counter that may
 #   only run for K cycles), so they cannot be step-inductive: an induction step
-#   may start with the window already half-elapsed.  The unbounded half of the
-#   story is formal/routing.sby (all safety invariants, 1-induction) plus the
-#   long constrained-random runs in simulation; this job checks the bounded
-#   liveness/completion behavior exhaustively over every input/reset schedule
-#   of the depth below, which simulation (even seeded) cannot.
+#   may start with the window already half-elapsed.  They ARE plain safety
+#   invariants, though ("no wait-counter exceeds its limit"), so they yield to
+#   Property-Directed Reachability, which computes an over-approximation of
+#   the reachable states instead of unrolling or inducting.
+#
+#   This job was originally smtbmc z3 BMC at depth 64; that became infeasible
+#   on a laptop - per-step solve time grows super-linearly (measured
+#   2026-10-18: ~5 s at step 20, ~1.5 min at step 34, ~5-6 min per step at
+#   41-48; step 49 alone stalled > 27 min and that run was terminated at ~2 h
+#   with no verdict).  abc pdr proves the same 108-assertion claim set
+#   unbounded in ~6 s: any bounded depth would be a strictly weaker claim.
 #
 # WHY THE SLAVE MODELS ARE BOUNDED-LATENCY
 #   A target that never answers stalls any crossbar; no DUT can be proven to
@@ -29,22 +35,20 @@
 #   properties remain proven against arbitrary, never-answering targets in
 #   routing.sby.
 #
-# DEPTH RATIONALE
-#   TX_LIMIT is 32 cycles (measured settling is far below; the limits are
-#   deliberately loose).  depth 64 covers the first two full deadline windows
-#   of all four streams after the initial reset, plus the startup phase.
-#   Deeper BMC on this harness grows roughly 2x per step and is compute-bound;
-#   64 is the largest depth that keeps the job a few minutes on a laptop while
-#   still being deeper than two complete contended transactions.
+# PROOF-BINDING CHECK
+#   To exclude a vacuous pass, the same job was re-run once with a
+#   deliberately sabotaged environment (one slave model answering the wrong
+#   response code, since reverted): the engine returned FAIL within ~5 s, so
+#   the proof machinery catches real violations and a PASS is not vacuous.
+#   Full details in docs/results.md section 4.
 #
 # Run from the repository root:  sby -f formal/progress.sby
 # -----------------------------------------------------------------------------
 [options]
-mode bmc
-depth 64
+mode prove
 
 [engines]
-smtbmc z3
+abc pdr
 
 [script]
 read_verilog -sv -formal -DAXIL_ASSERTIONS -I. \

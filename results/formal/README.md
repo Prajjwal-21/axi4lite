@@ -13,7 +13,7 @@ rc=0)` lines and engine summaries reviewable in the repository.
 | `routing.txt` | `formal/routing.sby` - k-induction over all reachable states, free masters/slaves | PASS |
 | `reset.txt` | `formal/reset.sby` - BMC 16, reset inertness | PASS |
 | `completion.txt` | `formal/completion.sby` - BMC 24, boundary transaction properties | PASS |
-| `progress.txt` | `formal/progress.sby` - BMC 64, bounded-latency liveness | see file |
+| `progress.txt` | `formal/progress.sby` - PDR, unbounded bounded-latency liveness + response-code routing | PASS |
 
 Rerun any of them from the repository root with `sby -f formal/<job>.sby`
 (or `make formal` / `make formal-deep`); the full log then lands in

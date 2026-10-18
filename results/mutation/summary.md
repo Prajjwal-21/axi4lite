@@ -1,6 +1,6 @@
 # Mutation testing report
 
-Regression: `scripts/run_tests.py` on DUTs `crossbar`, `peripherals`, `subsystem`, seed 1, Python driver `/Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python`.  Generated 2026-10-17 15:14:00 IST in 2.5 min.
+Regression: `scripts/run_tests.py` on DUTs `crossbar`, `peripherals`, `subsystem`, seed 1, Python driver `/Users/prajjwalsingh/Desktop/axilite4/.venv/bin/python`.  Generated 2026-10-18 13:30:01 IST in 1.8 min.
 
 Detection means the regression failed for the mutant; each verdict lists *how* it failed.  SURVIVED is a real gap in the test suite and is reported as such - the in-rtl/formal flows may still catch it, which is noted per mutant where applicable.
 
@@ -10,16 +10,16 @@ Formal cross-check: `formal/routing.sby` (unbounded k-induction) ran against 10 
 
 | mutant | area | sim verdict | how | routing.sby | time |
 |---|---|---|---|---|---|
-| `M0-baseline` | control | SURVIVED | - | PASS | 12s |
-| `M1-write-slot-hole` | master port / write commit | DETECTED | failing test(s) | PASS | 5s |
-| `M2-rsp-mask-off` | master port / response gating | SURVIVED | - | FAIL | 13s |
-| `M2b-rsp-mask-off-read` | master port / response gating (read) | SURVIVED | - | FAIL | 14s |
-| `M3-wstrb-drop` | master port / W payload capture | DETECTED | failing test(s) | PASS | 13s |
+| `M0-baseline` | control | SURVIVED | - | PASS | 9s |
+| `M1-write-slot-hole` | master port / write commit | DETECTED | failing test(s) | PASS | 3s |
+| `M2-rsp-mask-off` | master port / response gating | SURVIVED | - | FAIL | 8s |
+| `M2b-rsp-mask-off-read` | master port / response gating (read) | SURVIVED | - | FAIL | 9s |
+| `M3-wstrb-drop` | master port / W payload capture | DETECTED | failing test(s) | PASS | 9s |
 | `M4-decode-drop-last` | address decoder | DETECTED | failing test(s) | FAIL | 4s |
-| `M5-bresp-okay` | error target | DETECTED | failing test(s) | FAIL | 4s |
-| `M6-rr-ptr-frozen` | arbiter / fairness | SURVIVED | - | PASS | 12s |
-| `M7-gnt-hold-off` | arbiter / hold-until-done | DETECTED | failing test(s) | PASS | 4s |
-| `M8-awaddr-swap` | slave port / payload mux | DETECTED | failing test(s) | FAIL | 4s |
+| `M5-bresp-okay` | error target | DETECTED | failing test(s) | FAIL | 3s |
+| `M6-rr-ptr-frozen` | arbiter / fairness | SURVIVED | - | PASS | 8s |
+| `M7-gnt-hold-off` | arbiter / hold-until-done | DETECTED | failing test(s) | PASS | 3s |
+| `M8-awaddr-swap` | slave port / payload mux | DETECTED | failing test(s) | FAIL | 3s |
 
 ## M0-baseline - control
 
@@ -33,7 +33,7 @@ Edit `rtl/axi_lite_master_port.sv`:
 
 Verdict: **SURVIVED**, runner rc=0
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 12.3s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 9.4s
 
 Reproduce the formal side:
 
@@ -71,7 +71,7 @@ Verdict: **DETECTED** (failing test(s)), runner rc=1
 
 Evidence: `test_aw_w_arrival_orders: m0: B handshake did not complete within 512 cycles (deadlock or DUT not responding); test_channel_backpressure: m0: B handshake did not complete within 512 cycles (deadlock or DUT not responding); test_randomized_multi_master: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_fault_injection_detected: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_deadlock_is_detected: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_second_aw_held_off: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 15.9s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 11.8s
 
 Reproduce the formal side:
 
@@ -107,9 +107,9 @@ Edit `rtl/axi_lite_master_port.sv`:
 
 Verdict: **SURVIVED**, runner rc=0
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 1.8s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 1.3s
 
-Formal evidence: `SBY 15:12:29 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2-rsp-mask-off/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[0].u_mport.ap_b_rsp_needs_full_dispatch`
+Formal evidence: `SBY 13:28:56 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2-rsp-mask-off/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[0].u_mport.ap_b_rsp_needs_full_dispatch`
 
 Reproduce the formal side:
 
@@ -145,9 +145,9 @@ Edit `rtl/axi_lite_master_port.sv`:
 
 Verdict: **SURVIVED**, runner rc=0
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 1.4s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 0.9s
 
-Formal evidence: `SBY 15:12:44 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2b-rsp-mask-off-read/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[1].u_mport.ap_r_rsp_needs_dispatch`
+Formal evidence: `SBY 13:29:06 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M2b-rsp-mask-off-read/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.g_mst[1].u_mport.ap_r_rsp_needs_dispatch`
 
 Reproduce the formal side:
 
@@ -183,9 +183,9 @@ Edit `rtl/axi_lite_master_port.sv`:
 
 Verdict: **DETECTED** (failing test(s)), runner rc=1
 
-Evidence: `test_wstrb_partial_and_zero: READ m0 @0x00008004 data=0xaa000000 resp=OKAY : expected read data 0xffffff00, got 0xaa000000; test_randomized_multi_master: write transactions delivered to the slaves do not match the writes issued: missing={(32, 2768240687, 12): 1, (16420, 2768240688, 7): 1, (32804, 2768240693, 8): 1, (40, 2768240694, 0): 1, (32, 2768240695, 14): 1, (44, 2768240697, 4): 1, (164; test_two_masters_concurrent_access: assert 2863267840 == 2863285316; test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x10ae7d6a0>.get`
+Evidence: `test_wstrb_partial_and_zero: READ m0 @0x00008004 data=0xaa000000 resp=OKAY : expected read data 0xffffff00, got 0xaa000000; test_randomized_multi_master: write transactions delivered to the slaves do not match the writes issued: missing={(32, 2768240687, 12): 1, (16420, 2768240688, 7): 1, (32804, 2768240693, 8): 1, (40, 2768240694, 0): 1, (32, 2768240695, 14): 1, (44, 2768240697, 4): 1, (164; test_two_masters_concurrent_access: assert 2863267840 == 2863285316; test_randomized_register_traffic: @0x00000000: read 0x00000018, shadow 0x00000014 assert 24 == 20 + where 20 = get(0) + where get = <axil_subsystem_tests.Shadow object at 0x1093156a0>.get`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 10.7s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 7.4s
 
 Reproduce the formal side:
 
@@ -223,9 +223,9 @@ Verdict: **DETECTED** (failing test(s)), runner rc=1
 
 Evidence: `test_simultaneous_distinct_slaves: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_simultaneous_same_slave: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_aw_w_arrival_orders: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_channel_backpressure: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_delayed_response_routing: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_wstrb_partial_and_zero: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl ...`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 1.0s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 0.8s
 
-Formal evidence: `SBY 15:13:13 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M4-decode-drop-last/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_r_err_addr_unmapped`
+Formal evidence: `SBY 13:29:26 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M4-decode-drop-last/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_r_err_addr_unmapped`
 
 Reproduce the formal side:
 
@@ -263,9 +263,9 @@ Verdict: **DETECTED** (failing test(s)), runner rc=1
 
 Evidence: `test_invalid_address_decerr: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_reset_idle_and_in_flight: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_concurrent_read_write: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_contention_round_robin: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_randomized_multi_master: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_fault_injection_detected: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl ...`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 2.5s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 2.0s
 
-Formal evidence: `SBY 15:13:19 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M5-bresp-okay/routing] engine_0.induction: ## 0:00:01 Assert failed in axil_crossbar_harness: u_dut.u_error_slave.ap_bresp_is_decerr`
+Formal evidence: `SBY 13:29:31 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M5-bresp-okay/routing] engine_0.induction: ## 0:00:01 Assert failed in axil_crossbar_harness: u_dut.u_error_slave.ap_bresp_is_decerr`
 
 Reproduce the formal side:
 
@@ -301,7 +301,7 @@ Edit `rtl/axi_lite_arbiter.sv`:
 
 Verdict: **SURVIVED**, runner rc=0
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 11.7s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 8.6s
 
 Reproduce the formal side:
 
@@ -339,7 +339,7 @@ Verdict: **DETECTED** (failing test(s)), runner rc=1
 
 Evidence: `test_simultaneous_same_slave: m0: B handshake did not complete within 512 cycles (deadlock or DUT not responding); test_aw_w_arrival_orders: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_channel_backpressure: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_delayed_response_routing: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_wstrb_partial_and_zero: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_invalid_address_decerr: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl ...`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 7.8s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **PASS** (mutant not distinguished by the unbounded routing invariants), rc=0, 5.9s
 
 Reproduce the formal side:
 
@@ -377,9 +377,9 @@ Verdict: **DETECTED** (failing test(s)), runner rc=1
 
 Evidence: `test_simultaneous_distinct_slaves: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_simultaneous_same_slave: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_aw_w_arrival_orders: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_channel_backpressure: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_delayed_response_routing: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl; test_wstrb_partial_and_zero: cocotb expected it would shut down the simulation, but the simulation ended prematurely. This could be due to an assertion failure or a call to an exit routine in the HDL, or due to the simulator running out of events to process (is your cl ...`
 
-Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 1.1s
+Unbounded routing proof against this mutant (`formal/routing.sby`, k-induction + basecase): **FAIL** (refuted by routing.sby), rc=2, 0.9s
 
-Formal evidence: `SBY 15:14:00 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M8-awaddr-swap/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_payload_from_owner`
+Formal evidence: `SBY 13:30:01 [/Users/prajjwalsingh/Desktop/axilite4/results/mutation/work/M8-awaddr-swap/routing] engine_0.basecase: ## 0:00:00 Assert failed in axil_crossbar_harness: u_dut.ap_payload_from_owner`
 
 Reproduce the formal side:
 

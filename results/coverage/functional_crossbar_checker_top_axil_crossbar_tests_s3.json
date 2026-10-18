@@ -1,0 +1,430 @@
+{
+  "name": "functional_crossbar_checker_top_axil_crossbar_tests_s3",
+  "nmst": 2,
+  "nslv": 3,
+  "bins_total": 84,
+  "bins_hit": 55,
+  "percent": 65.5,
+  "points": [
+    {
+      "coverpoint": "slave0_activity",
+      "bin": "ar",
+      "count": 7
+    },
+    {
+      "coverpoint": "slave0_activity",
+      "bin": "aw",
+      "count": 23
+    },
+    {
+      "coverpoint": "slave0_activity",
+      "bin": "b",
+      "count": 22
+    },
+    {
+      "coverpoint": "slave0_activity",
+      "bin": "r",
+      "count": 7
+    },
+    {
+      "coverpoint": "slave0_activity",
+      "bin": "w",
+      "count": 23
+    },
+    {
+      "coverpoint": "slave1_activity",
+      "bin": "ar",
+      "count": 11
+    },
+    {
+      "coverpoint": "slave1_activity",
+      "bin": "aw",
+      "count": 18
+    },
+    {
+      "coverpoint": "slave1_activity",
+      "bin": "b",
+      "count": 18
+    },
+    {
+      "coverpoint": "slave1_activity",
+      "bin": "r",
+      "count": 11
+    },
+    {
+      "coverpoint": "slave1_activity",
+      "bin": "w",
+      "count": 18
+    },
+    {
+      "coverpoint": "slave2_activity",
+      "bin": "ar",
+      "count": 16
+    },
+    {
+      "coverpoint": "slave2_activity",
+      "bin": "aw",
+      "count": 35
+    },
+    {
+      "coverpoint": "slave2_activity",
+      "bin": "b",
+      "count": 35
+    },
+    {
+      "coverpoint": "slave2_activity",
+      "bin": "r",
+      "count": 16
+    },
+    {
+      "coverpoint": "slave2_activity",
+      "bin": "w",
+      "count": 35
+    },
+    {
+      "coverpoint": "xbar.ar_backpressure",
+      "bin": "0",
+      "count": 38
+    },
+    {
+      "coverpoint": "xbar.ar_backpressure",
+      "bin": "1",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.ar_backpressure",
+      "bin": "17+",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.ar_backpressure",
+      "bin": "2-4",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.ar_backpressure",
+      "bin": "5-16",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.aw_backpressure",
+      "bin": "0",
+      "count": 88
+    },
+    {
+      "coverpoint": "xbar.aw_backpressure",
+      "bin": "1",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.aw_backpressure",
+      "bin": "17+",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.aw_backpressure",
+      "bin": "2-4",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.aw_backpressure",
+      "bin": "5-16",
+      "count": 1
+    },
+    {
+      "coverpoint": "xbar.b_backpressure",
+      "bin": "0",
+      "count": 87
+    },
+    {
+      "coverpoint": "xbar.b_backpressure",
+      "bin": "1",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.b_backpressure",
+      "bin": "17+",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.b_backpressure",
+      "bin": "2-4",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.b_backpressure",
+      "bin": "5-16",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.r_backpressure",
+      "bin": "0",
+      "count": 38
+    },
+    {
+      "coverpoint": "xbar.r_backpressure",
+      "bin": "1",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.r_backpressure",
+      "bin": "17+",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.r_backpressure",
+      "bin": "2-4",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.r_backpressure",
+      "bin": "5-16",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.read_concurrency",
+      "bin": "0",
+      "count": 1951
+    },
+    {
+      "coverpoint": "xbar.read_concurrency",
+      "bin": "1",
+      "count": 574
+    },
+    {
+      "coverpoint": "xbar.read_concurrency",
+      "bin": "2",
+      "count": 17
+    },
+    {
+      "coverpoint": "xbar.read_concurrency",
+      "bin": "2_same_target",
+      "count": 98
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m0_DECERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m0_OKAY",
+      "count": 20
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m0_SLVERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m1_DECERR",
+      "count": 4
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m1_OKAY",
+      "count": 14
+    },
+    {
+      "coverpoint": "xbar.read_resp",
+      "bin": "m1_SLVERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m0_err",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m0_s0",
+      "count": 3
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m0_s1",
+      "count": 7
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m0_s2",
+      "count": 10
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m1_err",
+      "count": 4
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m1_s0",
+      "count": 4
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m1_s1",
+      "count": 4
+    },
+    {
+      "coverpoint": "xbar.read_target",
+      "bin": "m1_s2",
+      "count": 6
+    },
+    {
+      "coverpoint": "xbar.w_backpressure",
+      "bin": "0",
+      "count": 89
+    },
+    {
+      "coverpoint": "xbar.w_backpressure",
+      "bin": "1",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.w_backpressure",
+      "bin": "17+",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.w_backpressure",
+      "bin": "2-4",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.w_backpressure",
+      "bin": "5-16",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.wr_rd_overlap",
+      "bin": "m0_both",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.wr_rd_overlap",
+      "bin": "m1_both",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.write_concurrency",
+      "bin": "0",
+      "count": 1162
+    },
+    {
+      "coverpoint": "xbar.write_concurrency",
+      "bin": "1",
+      "count": 1280
+    },
+    {
+      "coverpoint": "xbar.write_concurrency",
+      "bin": "2",
+      "count": 49
+    },
+    {
+      "coverpoint": "xbar.write_concurrency",
+      "bin": "2_same_target",
+      "count": 149
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m0_DECERR",
+      "count": 12
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m0_OKAY",
+      "count": 47
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m0_SLVERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m1_DECERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m1_OKAY",
+      "count": 28
+    },
+    {
+      "coverpoint": "xbar.write_resp",
+      "bin": "m1_SLVERR",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m0_err",
+      "count": 12
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m0_s0",
+      "count": 18
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m0_s1",
+      "count": 7
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m0_s2",
+      "count": 24
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m1_err",
+      "count": 0
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m1_s0",
+      "count": 6
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m1_s1",
+      "count": 11
+    },
+    {
+      "coverpoint": "xbar.write_target",
+      "bin": "m1_s2",
+      "count": 11
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "all_bytes",
+      "count": 71
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "partial",
+      "count": 11
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "single_b0",
+      "count": 1
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "single_b1",
+      "count": 3
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "single_b2",
+      "count": 2
+    },
+    {
+      "coverpoint": "xbar.wstrb",
+      "bin": "single_b3",
+      "count": 1
+    }
+  ]
+}

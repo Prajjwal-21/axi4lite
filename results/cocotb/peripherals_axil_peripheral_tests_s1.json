@@ -57,7 +57,7 @@
     {
       "name": "test_timer_prescaler_and_w1c_race",
       "status": "PASS",
-      "time_s": 0.004,
+      "time_s": 0.005,
       "messages": []
     },
     {
@@ -81,7 +81,7 @@
     {
       "name": "test_uart_rx_frame_error_overrun_and_gating",
       "status": "PASS",
-      "time_s": 0.008,
+      "time_s": 0.009,
       "messages": []
     },
     {

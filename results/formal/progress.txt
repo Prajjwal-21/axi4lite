@@ -1,0 +1,25 @@
+SBY 16:04:56 [formal/progress] engine_0: 35 : ... 12 10 8 9 8 8 6 5 6 4 3 3 2 1 1 1 1 1 7 3 2 -284 ~747     32    30      0.58 sec  T/O =  0  PRV =107
+SBY 16:04:56 [formal/progress] engine_0: 35 : ... 12 11 8 9 8 8 6 5 6 4 3 3 2 1 1 1 1 1 7 4 3 -275 ~747     33    35      0.59 sec  T/O =  0  PRV =107
+SBY 16:04:56 [formal/progress] engine_0: Proved output 92 in frame 35.
+SBY 16:04:56 [formal/progress] engine_0: 36 : ... 9 9 9 9 9 6 5 6 4 3 3 2 1 1 1 1 1 6 2 1 0 -289 ~762        0    35      0.63 sec  T/O =  0  PRV =108
+SBY 16:04:56 [formal/progress] engine_0: Proved output 91 in frame 1807220920 (converged).
+SBY 16:04:56 [formal/progress] engine_0: Block =  246  Oblig =  7054  Clause =  3053  Call = 59350 (sat=66.6%)  Cex =   0  Start = 149
+SBY 16:04:56 [formal/progress] engine_0: SAT solving =     3.16 sec ( 60.10 %)
+SBY 16:04:56 [formal/progress] engine_0: unsat     =     0.35 sec (  6.75 %)
+SBY 16:04:56 [formal/progress] engine_0: sat       =     2.80 sec ( 53.35 %)
+SBY 16:04:56 [formal/progress] engine_0: Generalize  =     1.63 sec ( 31.09 %)
+SBY 16:04:56 [formal/progress] engine_0: Push clause =     1.62 sec ( 30.93 %)
+SBY 16:04:56 [formal/progress] engine_0: Ternary sim =     0.11 sec (  2.01 %)
+SBY 16:04:56 [formal/progress] engine_0: Containment =     0.04 sec (  0.73 %)
+SBY 16:04:56 [formal/progress] engine_0: CNF compute =     0.22 sec (  4.13 %)
+SBY 16:04:56 [formal/progress] engine_0: Refinement  =     0.00 sec (  0.00 %)
+SBY 16:04:56 [formal/progress] engine_0: TOTAL       =     5.25 sec (100.00 %)
+SBY 16:04:56 [formal/progress] engine_0: Property proved.  Time =     5.26 sec
+SBY 16:04:56 [formal/progress] engine_0: Counter-example is not available.
+SBY 16:04:56 [formal/progress] engine_0: finished (returncode=0)
+SBY 16:04:56 [formal/progress] engine_0: Status returned by engine: PASS
+SBY 16:04:56 [formal/progress] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:06 (6)
+SBY 16:04:56 [formal/progress] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:06 (6)
+SBY 16:04:56 [formal/progress] summary: engine_0 (abc pdr) returned PASS
+SBY 16:04:56 [formal/progress] summary: engine_0 did not produce any traces
+SBY 16:04:56 [formal/progress] DONE (PASS, rc=0)

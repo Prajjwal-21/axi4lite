@@ -69,7 +69,7 @@
     {
       "name": "test_uart_tx_frame_and_bit_timing",
       "status": "PASS",
-      "time_s": 0.008,
+      "time_s": 0.007,
       "messages": []
     },
     {

@@ -38,14 +38,14 @@
  11550.01ns INFO     cocotb.regression                  *******************************************************************************************************************
                                                         ** TEST                                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
                                                         *******************************************************************************************************************
-                                                        ** axil_subsystem_tests.test_reset_state_and_ids               PASS         730.00           0.00     204283.86  **
-                                                        ** axil_subsystem_tests.test_address_map_and_responses         PASS        4470.00           0.02     253464.83  **
-                                                        ** axil_subsystem_tests.test_two_masters_concurrent_access     PASS         750.00           0.00     218004.81  **
-                                                        ** axil_subsystem_tests.test_uart_loopback_through_crossbar    PASS         850.00           0.00     258214.72  **
-                                                        ** axil_subsystem_tests.test_gpio_pin_event_through_crossbar   PASS         580.00           0.00     230425.46  **
-                                                        ** axil_subsystem_tests.test_timer_expiry_through_crossbar     PASS         530.00           0.00     258457.79  **
-                                                        ** axil_subsystem_tests.test_randomized_register_traffic       PASS        3640.00           0.02     213329.68  **
+                                                        ** axil_subsystem_tests.test_reset_state_and_ids               PASS         730.00           0.00     200827.57  **
+                                                        ** axil_subsystem_tests.test_address_map_and_responses         PASS        4470.00           0.02     254640.41  **
+                                                        ** axil_subsystem_tests.test_two_masters_concurrent_access     PASS         750.00           0.00     217928.23  **
+                                                        ** axil_subsystem_tests.test_uart_loopback_through_crossbar    PASS         850.00           0.00     262774.88  **
+                                                        ** axil_subsystem_tests.test_gpio_pin_event_through_crossbar   PASS         580.00           0.00     230700.42  **
+                                                        ** axil_subsystem_tests.test_timer_expiry_through_crossbar     PASS         530.00           0.00     256260.49  **
+                                                        ** axil_subsystem_tests.test_randomized_register_traffic       PASS        3640.00           0.02     216703.21  **
                                                         *******************************************************************************************************************
-                                                        ** TESTS=7 PASS=7 FAIL=0 SKIP=0                                           11550.01           0.05     227229.06  **
+                                                        ** TESTS=7 PASS=7 FAIL=0 SKIP=0                                           11550.01           0.05     228165.55  **
                                                         *******************************************************************************************************************
 - :0: Verilog $finish
